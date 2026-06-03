@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>錯視</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="nav-top">
+      <a href="index.html">← ギャラリーに戻る</a>
+      <span id="counter" class="small"></span>
+    </div>
+
+    <h1 class="illusion-title" id="title"></h1>
+    <p class="illusion-sub" id="sub"></p>
+
+    <div class="stage" id="stage"></div>
+
+    <div class="explain">
+      <h2>解説</h2>
+      <p id="explain"></p>
+    </div>
+
+    <nav class="pager" id="pager"></nav>
+  </main>
+
+  <footer class="site">純粋な HTML/CSS で描画 · GitHub Pages 対応</footer>
+
+  <script src="assets/illusions.js"></script>
+  <script>
+    const list = window.ILLUSIONS;
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id") || list[0].id;
+    let idx = list.findIndex((it) => it.id === id);
+    if (idx < 0) idx = 0;
+    const it = list[idx];
+
+    document.title = it.title + " — 錯視ギャラリー";
+    document.getElementById("title").textContent = it.title;
+    document.getElementById("sub").textContent = it.sub;
+    document.getElementById("explain").textContent = it.explain;
+    document.getElementById("stage").innerHTML = it.art();
+    document.getElementById("counter").textContent = `${idx + 1} / ${list.length}`;
+
+    const prev = list[(idx - 1 + list.length) % list.length];
+    const next = list[(idx + 1) % list.length];
+    document.getElementById("pager").innerHTML = `
+      <a class="prev" href="illusion.html?id=${prev.id}">
+        <span class="small">← 前へ</span>${prev.title}
+      </a>
+      <a class="next" href="illusion.html?id=${next.id}">
+        <span class="small">次へ →</span>${next.title}
+      </a>`;
+  </script>
+</body>
+</html>
