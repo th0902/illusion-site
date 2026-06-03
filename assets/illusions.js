@@ -303,10 +303,10 @@ function buildJastrow() {
       ` L ${i2[0]} ${i2[1] + cy} A ${r1} ${r1} 0 0 0 ${i1[0]} ${i1[1] + cy} Z`;
     return `<path d="${d}" fill="${fill}"/>`;
   };
-  // 上の図形と、その下に少しずらして同じ図形
-  const top = sector(70, "#4f7bd6");
-  const bot = sector(118, "#ff7043");
-  return `<svg width="320" height="210" viewBox="0 0 320 210">${top}${bot}</svg>`;
+  // 上の図形と、その下に少しずらして同じ図形（弧の頂点が切れないよう中心を下げる）
+  const top = sector(135, "#1f4fb8");
+  const bot = sector(183, "#ff7043");
+  return `<svg width="320" height="200" viewBox="0 0 320 200">${top}${bot}</svg>`;
 }
 
 function buildWhite() {
