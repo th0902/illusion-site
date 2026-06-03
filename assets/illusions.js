@@ -137,14 +137,6 @@ window.ILLUSIONS = [
     art: buildNecker,
   },
   {
-    id: "rubin-vase",
-    title: "ルビンの壺",
-    sub: "Rubin's Vase",
-    explain:
-      "中央の白い「壺」は、向かい合う2つの黒い「横顔」にも見えます。白を図（主役）と捉えれば壺、黒を図と捉えれば顔——どちらを図、どちらを地（背景）とするかで見え方が切り替わる、図と地の代表例です。",
-    art: buildRubin,
-  },
-  {
     id: "vertical-horizontal",
     title: "垂直水平錯視",
     sub: "Vertical–Horizontal Illusion",
@@ -402,56 +394,6 @@ function buildNecker() {
   poly(b);
   for (let i = 0; i < 4; i++) p += svgLine(f[i][0], f[i][1], b[i][0], b[i][1], ink, w);
   return `<svg width="290" height="270" viewBox="0 0 290 270">${p}</svg>`;
-}
-
-function buildRubin() {
-  const cx = 140, W = 280, H = 300;
-  // 中心からの壺の半幅 [dx, y]。dx が小さい所＝横顔が前へ出る所（鼻・唇・あご）。
-  // 壺は上下の縁(y=0, y=H)に接して、白地を左右の2つの顔に分断する。
-  const prof = [
-    [42, 0],    // 頭頂のすきま（後頭部・奥へ）
-    [34, 24],   // 頭の丸み
-    [28, 44],   // 生え際
-    [23, 62],   // 額（前へ出る）
-    [25, 80],   // 額の下
-    [21, 92],   // まゆ（少し前）
-    [31, 104],  // 目のくぼみ（引っこむ）
-    [27, 116],  // 鼻のつけ根
-    [9, 134],   // 鼻先（最も前へ）
-    [11, 140],  // 鼻先の下（尖りを残す）
-    [42, 150],  // 鼻の下＝人中（ぐっと引っこむ）
-    [22, 160],  // 上唇（前へ）
-    [31, 169],  // 口の合わせ目（引っこむ）
-    [21, 178],  // 下唇（前へ）
-    [34, 192],  // 下唇の下（引っこむ）
-    [18, 206],  // あご（前へ）
-    [22, 214],  // あご先
-    [46, 236],  // のど（大きく引っこむ）
-    [42, 264],  // 首
-    [48, H],    // 肩・胸（底）
-  ];
-  const R = prof.map(([dx, y]) => ({ x: cx + dx, y }));
-  const L = prof.map(([dx, y]) => ({ x: cx - dx, y }));
-  // 開いた折れ線を、頂点で丸めながら通る滑らかなパスにする（pen は先頭点にある前提）
-  const smooth = (P) => {
-    let s = ` L ${(P[0].x + P[1].x) / 2} ${(P[0].y + P[1].y) / 2}`;
-    for (let i = 1; i < P.length - 1; i++) {
-      const mx = (P[i].x + P[i + 1].x) / 2, my = (P[i].y + P[i + 1].y) / 2;
-      s += ` Q ${P[i].x} ${P[i].y} ${mx} ${my}`;
-    }
-    return s + ` L ${P[P.length - 1].x} ${P[P.length - 1].y}`;
-  };
-  const Lrev = [...L].reverse();
-  let d = `M ${L[0].x} ${L[0].y}`;       // 左上
-  d += ` L ${R[0].x} ${R[0].y}`;          // 上辺（フラットに縁へ接する）
-  d += smooth(R);                          // 右の輪郭を下へ
-  d += ` L ${Lrev[0].x} ${Lrev[0].y}`;    // 下辺（フラット）
-  d += smooth(Lrev);                       // 左の輪郭を上へ
-  d += " Z";
-  // 黒いパネルに白い壺を切り抜く＝左右は黒い横顔
-  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
-    `<rect width="${W}" height="${H}" fill="#141414"/>` +
-    `<path d="${d}" fill="#ffffff"/></svg>`;
 }
 
 function buildVertHoriz() {
