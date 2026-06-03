@@ -239,7 +239,30 @@ footer.site {
 .afterimage .blank { width: 200px; height: 200px; margin: 16px auto 0; background: #fff; border: 1px solid #ccc; position: relative; }
 .afterimage .blank::after { content: "+"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color:#888; font-size: 24px;}
 
+/* Delboeuf */
+.delboeuf { display: flex; gap: 70px; align-items: center; }
+.delboeuf .grp { position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+.delboeuf .dot { width: 60px; height: 60px; border-radius: 50%; background: #111; }
+.delboeuf .ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid #111; border-radius: 50%; }
+.delboeuf .near { width: 78px; height: 78px; }
+.delboeuf .far { width: 150px; height: 150px; }
+
+/* White's illusion */
+.white-ill { position: relative; width: 320px; height: 200px; }
+.white-ill .stripes { display: flex; width: 100%; height: 100%; }
+.white-ill .col { flex: 1; }
+.white-ill .col.k { background: #111; }
+.white-ill .col.w { background: #fff; }
+.white-ill .patch { position: absolute; width: 40px; height: 90px; top: 55px; background: #888; }
+.white-ill .on-black { left: 80px; }   /* 黒い縞の上（左右は白）→ 明るく見える */
+.white-ill .on-white { left: 200px; }  /* 白い縞の上（左右は黒）→ 暗く見える */
+
+/* Mach bands */
+.mach { display: flex; width: 360px; height: 150px; }
+.mach > div { flex: 1; }
+
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }
   .contrast { width: 300px; }
+  .delboeuf { gap: 30px; }
 }
