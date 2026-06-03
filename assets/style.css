@@ -1,10 +1,21 @@
+/* =========================================================
+   BAUHAUS THEME
+   三原色 + 黒 / 幾何学形態 / ハードエッジ / 大胆な書体
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+JP:wght@500;700;900&display=swap');
+
 :root {
-  --bg: #0f1115;
-  --panel: #171a21;
-  --fg: #e8eaed;
-  --muted: #9aa0aa;
-  --accent: #6ea8fe;
-  --border: #262b35;
+  --paper: #f2ede1;
+  --ink: #141414;
+  --red: #df3b26;
+  --blue: #1f4fb8;
+  --yellow: #f3c10a;
+  --muted: #6b6256;
+  /* ページごとの差し色（JS でインライン上書き）。既定は赤 */
+  --c: var(--red);
+  --on: #fff;
+  --display: "Josefin Sans", "Noto Sans JP", sans-serif;
+  --mono: "Space Grotesk", ui-monospace, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -12,115 +23,194 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-  line-height: 1.6;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Space Grotesk", "Noto Sans JP", sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+body { padding-top: 10px; }
+/* 上端のバウハウス・カラーバンド */
+body::before {
+  content: "";
+  position: fixed; top: 0; left: 0; right: 0; height: 10px; z-index: 100;
+  background: linear-gradient(90deg,
+    var(--red) 0 33.333%, var(--blue) 0 66.666%, var(--yellow) 0);
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { color: var(--ink); text-decoration: none; }
 
 .wrap {
-  max-width: 880px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 24px 20px 80px;
+  padding: 0 24px 90px;
 }
 
+/* ---- ヘッダー（ギャラリー） ---- */
 header.site {
-  text-align: center;
-  padding: 48px 20px 24px;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 24px 30px;
 }
-header.site h1 { margin: 0 0 8px; font-size: 2rem; }
-header.site p { margin: 0; color: var(--muted); }
+header.site .shapes { display: flex; align-items: flex-end; gap: 16px; margin-bottom: 26px; }
+.s-circle { width: 46px; height: 46px; border-radius: 50%; background: var(--red); }
+.s-square { width: 46px; height: 46px; background: var(--blue); }
+.s-tri {
+  width: 0; height: 0;
+  border-left: 23px solid transparent; border-right: 23px solid transparent;
+  border-bottom: 46px solid var(--yellow);
+}
+header.site h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  line-height: .92;
+  letter-spacing: .01em;
+}
+header.site .lead {
+  margin: 18px 0 0;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .28em;
+  font-size: .78rem;
+  color: var(--muted);
+}
+header.site::after {
+  content: ""; display: block; height: 4px; background: var(--ink); margin-top: 28px;
+}
 
-/* ---- gallery grid ---- */
+/* ---- ギャラリーのグリッド ---- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 28px;
+  padding-top: 36px;
 }
 .card {
   display: block;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px;
-  color: var(--fg);
-  transition: transform .12s ease, border-color .12s ease;
+  position: relative;
+  background: #fff;
+  border: 3px solid var(--ink);
+  color: var(--ink);
+  transition: transform .14s ease, box-shadow .14s ease;
 }
 .card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-  text-decoration: none;
+  transform: translate(-5px, -5px);
+  box-shadow: 9px 9px 0 var(--c);
+}
+.card .num {
+  position: absolute; top: 0; left: 0; z-index: 2;
+  background: var(--c); color: var(--on);
+  font-family: var(--mono); font-weight: 700; font-size: .8rem;
+  padding: 4px 11px;
+  border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink);
 }
 .card .thumb {
-  height: 130px;
-  border-radius: 10px;
+  height: 156px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff;
-  margin-bottom: 12px;
+  border-bottom: 3px solid var(--ink);
 }
 .card .thumb > * { transform: scale(.5); flex: none; }
-.card h3 { margin: 0 0 4px; font-size: 1.05rem; }
-.card p { margin: 0; font-size: .85rem; color: var(--muted); }
+.card .meta { padding: 15px 16px 17px; }
+.card h3 {
+  margin: 0 0 5px;
+  font-family: var(--display); font-weight: 700; font-size: 1.18rem; line-height: 1.1;
+}
+.card .sub {
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: .16em;
+  font-size: .66rem; color: var(--muted);
+}
 
-/* ---- single illusion page ---- */
+/* ---- 個別ページ ---- */
 .nav-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
-  font-size: .9rem;
+  padding: 30px 0 34px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .74rem;
 }
-.illusion-title { margin: 0 0 6px; font-size: 1.6rem; }
-.illusion-sub { margin: 0 0 28px; color: var(--muted); }
+.nav-top a { font-weight: 700; }
+.nav-top a:hover { color: var(--c); }
+.nav-top #counter { color: var(--muted); }
+
+.illusion-title {
+  margin: 0;
+  display: flex; align-items: center; gap: .45em;
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3.2rem); line-height: 1;
+}
+.illusion-title::before {
+  content: ""; flex: none; width: .62em; height: .62em; background: var(--c);
+}
+.illusion-sub {
+  margin: 14px 0 30px;
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: .26em;
+  font-size: .82rem; color: var(--muted);
+}
 
 .stage {
   background: #fff;
-  border-radius: 16px;
-  padding: 32px;
+  border: 3px solid var(--ink);
+  box-shadow: 11px 11px 0 var(--c);
+  padding: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 360px;
+  min-height: 380px;
   overflow: hidden;
 }
 
 .explain {
-  margin-top: 28px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 20px 22px;
+  margin-top: 42px;
+  border: 3px solid var(--ink);
+  background: #fff;
 }
-.explain h2 { margin: 0 0 8px; font-size: 1.1rem; }
-.explain p { margin: 0; color: #cfd3da; }
+.explain h2 {
+  margin: 0;
+  background: var(--c); color: var(--on);
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: .22em;
+  font-size: .74rem; font-weight: 700;
+  padding: 9px 16px;
+}
+.explain p { margin: 0; padding: 19px 20px; color: #2a2a2a; }
 
 .pager {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
   margin-top: 36px;
 }
 .pager a {
-  flex: 1;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  padding: 16px 18px;
+  font-family: var(--display); font-weight: 700; font-size: 1.05rem; line-height: 1.15;
+  transition: transform .12s ease, box-shadow .12s ease;
 }
+.pager a:hover { transform: translate(-4px, -4px); box-shadow: 7px 7px 0 var(--c); }
 .pager a.next { text-align: right; }
-.pager span.small { display: block; font-size: .75rem; color: var(--muted); }
+.pager span.small {
+  display: block; margin-bottom: 6px;
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: .2em;
+  font-size: .64rem; color: var(--muted);
+}
 
 footer.site {
+  border-top: 4px solid var(--ink);
+  margin-top: 70px;
   text-align: center;
-  color: var(--muted);
-  font-size: .8rem;
-  padding: 40px 20px;
+  padding: 26px 20px;
+  font-family: var(--mono); text-transform: uppercase; letter-spacing: .22em;
+  font-size: .7rem; color: var(--muted);
 }
 
 /* =========================================================

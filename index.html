@@ -9,8 +9,13 @@
 </head>
 <body>
   <header class="site">
-    <h1>錯視ギャラリー</h1>
-    <p>1ページに1つの錯視。カードを選んでご覧ください。</p>
+    <div class="shapes" aria-hidden="true">
+      <span class="s-circle"></span>
+      <span class="s-tri"></span>
+      <span class="s-square"></span>
+    </div>
+    <h1>錯視<br />ギャラリー</h1>
+    <p class="lead" id="lead">Optical Illusions · Pure CSS</p>
   </header>
 
   <main class="wrap">
@@ -18,18 +23,34 @@
   </main>
 
   <footer class="site">
-    すべて純粋な HTML/CSS で描画 · GitHub Pages 対応
+    すべて純粋な HTML / CSS で描画 · GitHub Pages
   </footer>
 
   <script src="assets/illusions.js"></script>
   <script>
+    // バウハウスの三原色を循環させる差し色（[背景色, 文字色]）
+    const PAL = [
+      ["var(--red)", "#fff"],
+      ["var(--blue)", "#fff"],
+      ["var(--yellow)", "#141414"],
+    ];
     const grid = document.getElementById("grid");
-    grid.innerHTML = window.ILLUSIONS.map((it) => `
-      <a class="card" href="illusion.html?id=${it.id}">
-        <div class="thumb">${it.art()}</div>
-        <h3>${it.title}</h3>
-        <p>${it.sub}</p>
-      </a>`).join("");
+    grid.innerHTML = window.ILLUSIONS.map((it, i) => {
+      const [c, on] = PAL[i % PAL.length];
+      const num = String(i + 1).padStart(2, "0");
+      return `
+        <a class="card" style="--c:${c};--on:${on}" href="illusion.html?id=${it.id}">
+          <span class="num">${num}</span>
+          <div class="thumb">${it.art()}</div>
+          <div class="meta">
+            <h3>${it.title}</h3>
+            <span class="sub">${it.sub}</span>
+          </div>
+        </a>`;
+    }).join("");
+
+    document.getElementById("lead").textContent =
+      `Optical Illusions · ${window.ILLUSIONS.length} Works · Pure CSS`;
   </script>
 </body>
 </html>
