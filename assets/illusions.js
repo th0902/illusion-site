@@ -128,6 +128,62 @@ window.ILLUSIONS = [
       "明るさの異なる帯を段階的に並べると、それぞれの境目で暗い側はより暗く、明るい側はより明るい筋が見えます。各帯の内部は均一な色なのに、輪郭が強調されます。網膜の側抑制によるものです。",
     art: buildMach,
   },
+  {
+    id: "necker-cube",
+    title: "ネッカーの立方体",
+    sub: "Necker Cube",
+    explain:
+      "線だけで描かれた立方体です。どの面が手前かが決まっておらず、見つめていると前後の向きがパッと反転します。同じ図形に対して脳が2通りの奥行き解釈を切り替えるために起こります。",
+    art: buildNecker,
+  },
+  {
+    id: "rubin-vase",
+    title: "ルビンの壺",
+    sub: "Rubin's Vase",
+    explain:
+      "中央の黒い形は「壺」にも、向かい合う2つの「横顔」にも見えます。どちらを図（主役）と捉え、どちらを地（背景）と捉えるかで見え方が切り替わる、図と地の代表例です。",
+    art: buildRubin,
+  },
+  {
+    id: "vertical-horizontal",
+    title: "垂直水平錯視",
+    sub: "Vertical–Horizontal Illusion",
+    explain:
+      "縦の線と横の線はまったく同じ長さです。それでも縦の線のほうが長く見えます。人は垂直方向の長さを過大に、水平方向を過小に見積もる傾向があるためと考えられています。",
+    art: buildVertHoriz,
+  },
+  {
+    id: "ehrenstein",
+    title: "エーレンシュタイン錯視",
+    sub: "Ehrenstein Illusion",
+    explain:
+      "放射状にならんだ短い線が、中心の手前で途切れています。すると何も描かれていない中心に、周囲より明るい円盤がぼんやりと浮かんで見えます。途切れた線端を脳が円として補完するためです。",
+    art: buildEhrenstein,
+  },
+  {
+    id: "orbison",
+    title: "オービソン錯視",
+    sub: "Orbison Illusion",
+    explain:
+      "赤い四角はゆがみのない正方形です。同心円の上に重ねると、辺が内側へへこみ、全体がふくらんで見えます。背景の曲線を奥行きの手がかりと解釈し、図形がそれに引きずられます。",
+    art: buildOrbison,
+  },
+  {
+    id: "shepard-tables",
+    title: "シェパードのテーブル",
+    sub: "Shepard's Tables",
+    explain:
+      "2つの天板（平行四辺形）はまったく同じ形・大きさです。向きを変えただけで、片方は細長く、もう片方は幅広に見えます。平面の図形を立体のテーブルとして奥行き解釈してしまうために生じます。",
+    art: buildShepard,
+  },
+  {
+    id: "helmholtz-squares",
+    title: "ヘルムホルツの正方形",
+    sub: "Helmholtz's Squares",
+    explain:
+      "2つの正方形は同じ大きさです。横縞の正方形は縦長（背が高く）に、縦縞の正方形は横長に見えます。「横縞は太って見える」という通説とは逆の、ヘルムホルツが示した古典的な結果です。",
+    art: buildHelmholtz,
+  },
 ];
 
 function buildCafeWall() {
@@ -329,4 +385,102 @@ function buildMach() {
     .map((g) => `<div style="background:rgb(${g},${g},${g})"></div>`)
     .join("");
   return `<div class="mach">${bands}</div>`;
+}
+
+function buildNecker() {
+  const ink = "#141414", w = 3;
+  const f = [[60, 100], [170, 100], [170, 210], [60, 210]]; // 手前の正方形
+  const b = [[110, 55], [220, 55], [220, 165], [110, 165]]; // 奥の正方形
+  let p = "";
+  const poly = (pts) => {
+    for (let i = 0; i < 4; i++) {
+      const a = pts[i], c = pts[(i + 1) % 4];
+      p += svgLine(a[0], a[1], c[0], c[1], ink, w);
+    }
+  };
+  poly(f);
+  poly(b);
+  for (let i = 0; i < 4; i++) p += svgLine(f[i][0], f[i][1], b[i][0], b[i][1], ink, w);
+  return `<svg width="290" height="270" viewBox="0 0 290 270">${p}</svg>`;
+}
+
+function buildRubin() {
+  const cx = 140;
+  // [中心からの幅, y] の横顔プロファイル（上→下）。額・鼻・口・あごを大きめに
+  const prof = [
+    [30, 16],  // 鉢の縁＝頭頂
+    [16, 32],
+    [30, 52],  // 額
+    [10, 74],  // 鼻のつけ根（くぼみ）
+    [46, 92],  // 鼻先（出っぱり）
+    [12, 110], // 鼻の下（くぼみ）
+    [34, 126], // 上唇
+    [10, 142], // 口（くぼみ）
+    [38, 164], // あご
+    [14, 196], // 首（くびれ）
+    [50, 230], // 鉢の胴
+    [44, 254], // 鉢の底
+  ];
+  // 右の輪郭（上→下）と左の輪郭（下→上）を1つの閉ループにし、二次ベジエで滑らかに
+  const R = prof.map(([dx, y]) => ({ x: cx + dx, y }));
+  const L = [...prof].reverse().map(([dx, y]) => ({ x: cx - dx, y }));
+  const pts = R.concat(L);
+  const n = pts.length;
+  let d = `M ${pts[0].x} ${pts[0].y}`;
+  for (let i = 1; i <= n; i++) {
+    const cur = pts[i % n], nxt = pts[(i + 1) % n];
+    const mx = (cur.x + nxt.x) / 2, my = (cur.y + nxt.y) / 2;
+    d += ` Q ${cur.x} ${cur.y} ${mx} ${my}`;
+  }
+  d += " Z";
+  return `<svg width="280" height="270" viewBox="0 0 280 270"><path d="${d}" fill="#141414"/></svg>`;
+}
+
+function buildVertHoriz() {
+  const ink = "#141414";
+  let p = svgLine(50, 200, 230, 200, ink, 4); // 水平（長さ180）
+  p += svgLine(140, 200, 140, 20, ink, 4);    // 垂直（長さ180）
+  return `<svg width="280" height="220" viewBox="0 0 280 220">${p}</svg>`;
+}
+
+function buildEhrenstein() {
+  const cx = 150, cy = 130, ri = 44, ro = 112, N = 16;
+  let p = "";
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2;
+    p += svgLine(
+      cx + Math.cos(a) * ri, cy + Math.sin(a) * ri,
+      cx + Math.cos(a) * ro, cy + Math.sin(a) * ro, "#141414", 4
+    );
+  }
+  return `<svg width="300" height="260" viewBox="0 0 300 260">${p}</svg>`;
+}
+
+function buildOrbison() {
+  const cx = 150, cy = 150;
+  let p = "";
+  for (let r = 18; r <= 150; r += 15) {
+    p += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#9aa0aa" stroke-width="1.5"/>`;
+  }
+  p += `<rect x="80" y="80" width="140" height="140" fill="none" stroke="#df3b26" stroke-width="3"/>`;
+  return `<svg width="300" height="300" viewBox="0 0 300 300">${p}</svg>`;
+}
+
+function buildShepard() {
+  // 同一の平行四辺形（天板）を、向きだけ変えて2つ
+  const top = "M0 0 L150 -28 L196 44 L46 72 Z";
+  const t = (tf) =>
+    `<path d="${top}" transform="${tf}" fill="#d2cab6" stroke="#141414" stroke-width="3"/>`;
+  return `<svg width="430" height="240" viewBox="0 0 430 240">
+    ${t("translate(40,90)")}
+    ${t("translate(392,12) rotate(90)")}
+  </svg>`;
+}
+
+function buildHelmholtz() {
+  return `
+    <div class="helmholtz">
+      <div class="sq horiz"></div>
+      <div class="sq vert"></div>
+    </div>`;
 }

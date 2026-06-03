@@ -351,6 +351,12 @@ footer.site {
 .mach { display: flex; width: 360px; height: 150px; }
 .mach > div { flex: 1; }
 
+/* Helmholtz squares */
+.helmholtz { display: flex; gap: 56px; align-items: center; }
+.helmholtz .sq { width: 130px; height: 130px; border: 2px solid #141414; }
+.helmholtz .horiz { background: repeating-linear-gradient(0deg, #141414 0 5px, #fff 5px 12px); }
+.helmholtz .vert { background: repeating-linear-gradient(90deg, #141414 0 5px, #fff 5px 12px); }
+
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }
   .contrast { width: 300px; }
