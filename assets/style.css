@@ -413,6 +413,11 @@ footer.site {
   width: 10px; height: 10px; margin: -5px; border-radius: 50%; background: #141414;
 }
 
+/* 回転アニメーション（ベンハムのコマ / 運動誘発盲） */
+@keyframes spin { to { transform: rotate(360deg); } }
+.benham svg { transform-origin: 50% 50%; animation: spin .34s linear infinite; }
+.mib .mib-spin { transform-box: view-box; transform-origin: 150px 150px; animation: spin 9s linear infinite; }
+
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }
   .contrast { width: 300px; }
