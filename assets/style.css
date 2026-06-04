@@ -417,6 +417,7 @@ footer.site {
 @keyframes spin { to { transform: rotate(360deg); } }
 .benham svg { transform-origin: 50% 50%; animation: spin .34s linear infinite; }
 .mib .mib-spin { transform-box: view-box; transform-origin: 150px 150px; animation: spin 9s linear infinite; }
+.spiral-ame svg { transform-origin: 50% 50%; animation: spin 7s linear infinite; }
 
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }
