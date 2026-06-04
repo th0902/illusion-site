@@ -357,6 +357,62 @@ footer.site {
 .helmholtz .horiz { background: repeating-linear-gradient(0deg, #141414 0 5px, #fff 5px 12px); }
 .helmholtz .vert { background: repeating-linear-gradient(90deg, #141414 0 5px, #fff 5px 12px); }
 
+/* Cornsweet illusion */
+.cornsweet {
+  width: 360px; height: 200px; border: 3px solid var(--ink);
+  background: linear-gradient(90deg,
+    #8f8f8f 0%, #8f8f8f 36%,
+    #d8d8d8 49.6%, #d8d8d8 50%,
+    #5a5a5a 50%, #5a5a5a 50.4%,
+    #8f8f8f 64%, #8f8f8f 100%);
+}
+
+/* Bezold effect */
+.bezold { display: flex; border: 3px solid var(--ink); }
+.bezold .pane { width: 170px; height: 200px; }
+.bezold .black {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 9px, #111 9px 12px),
+    repeating-linear-gradient(0deg, transparent 0 9px, #111 9px 12px),
+    #c0392b;
+}
+.bezold .white {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 9px, #fff 9px 12px),
+    repeating-linear-gradient(0deg, transparent 0 9px, #fff 9px 12px),
+    #c0392b;
+}
+
+/* Lilac chaser */
+.lilac { position: relative; width: 300px; height: 300px; }
+.lilac .d {
+  position: absolute; top: 50%; left: 50%;
+  width: 36px; height: 36px; margin: -18px; border-radius: 50%;
+  background: #d63bd6; filter: blur(5px);
+  animation: lilacFade 1.2s linear infinite;
+}
+@keyframes lilacFade { 0%, 8% { opacity: 0; } 9%, 100% { opacity: 1; } }
+.lilac .cross { position: absolute; top: 50%; left: 50%; width: 0; height: 0; }
+.lilac .cross::before {
+  content: ""; position: absolute; width: 2px; height: 22px;
+  background: #444; left: -1px; top: -11px;
+}
+.lilac .cross::after {
+  content: ""; position: absolute; height: 2px; width: 22px;
+  background: #444; top: -1px; left: -11px;
+}
+
+/* Troxler's fading */
+.troxler { position: relative; width: 320px; height: 320px; background: #efe9dc; }
+.troxler .blob {
+  position: absolute; width: 88px; height: 88px; margin: -44px;
+  border-radius: 50%; filter: blur(15px);
+}
+.troxler .fix {
+  position: absolute; top: 50%; left: 50%;
+  width: 10px; height: 10px; margin: -5px; border-radius: 50%; background: #141414;
+}
+
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }
   .contrast { width: 300px; }
