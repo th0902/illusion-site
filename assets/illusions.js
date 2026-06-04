@@ -176,6 +176,70 @@ window.ILLUSIONS = [
       "2つの正方形は同じ大きさです。横縞の正方形は縦長（背が高く）に、縦縞の正方形は横長に見えます。「横縞は太って見える」という通説とは逆の、ヘルムホルツが示した古典的な結果です。",
     art: buildHelmholtz,
   },
+  {
+    id: "checker-shadow",
+    title: "チェッカーシャドウ",
+    sub: "Adelson's Checker Shadow",
+    explain:
+      "マスAとマスBは、まったく同じ灰色です。円柱の影がかかったB（本来は明るいマス）と、影の外にあるA（本来は暗いマス）が、同じ明るさになるよう作られています。脳が「影だから本当はもっと明るいはず」と補正するため、別の色に見えます。指で2マスをつなぐと同じ色だとわかります。",
+    art: buildCheckerShadow,
+  },
+  {
+    id: "cornsweet",
+    title: "コーンスウィート錯視",
+    sub: "Cornsweet Illusion",
+    explain:
+      "左半分と右半分の大部分は、まったく同じ灰色です。中央の境目だけ、左がわずかに明るく・右がわずかに暗くなるグラデーションが付いています。この境目の差を脳が全体に押し広げ、左半分が明るく、右半分が暗く見えます。中央を指で隠すと、左右が同じ色だとわかります。",
+    art: buildCornsweet,
+  },
+  {
+    id: "wundt",
+    title: "ヴント錯視",
+    sub: "Wundt Illusion",
+    explain:
+      "2本の赤い縦線はどちらもまっすぐです。中央へ収束する放射線の上に置くと、内側へ弓なりにへこんで見えます。ヘリング錯視とは逆向きの、線の傾きにつられて生じる歪みの錯視です。",
+    art: buildWundt,
+  },
+  {
+    id: "sander",
+    title: "サンダーの平行四辺形",
+    sub: "Sander's Parallelogram",
+    explain:
+      "2本の赤い対角線は、まったく同じ長さです。大きな平行四辺形の対角線（左）は、小さいほうの対角線（右）よりずっと長く見えます。図形全体の大きさに引きずられて、長さの判断が狂います。",
+    art: buildSander,
+  },
+  {
+    id: "bezold",
+    title: "ベツォルト効果",
+    sub: "Bezold Effect",
+    explain:
+      "左右の赤は、まったく同じ色です。黒い線を重ねた赤は暗く沈み、白い線を重ねた赤は明るく華やいで見えます。隣り合う色によって、同じ色がまるで違う色に見える現象で、配色やデザインで利用されます。",
+    art: buildBezold,
+  },
+  {
+    id: "lilac-chaser",
+    title: "ライラックチェイサー",
+    sub: "Lilac Chaser",
+    explain:
+      "中央の十字を見つめ続けてください。まず、消えていく隙間を緑色の点が追いかけて回って見えます。さらに見続けると、紫の点が消え、緑の点だけがぐるぐる回って見えます。残像（補色）と、動かないものが消えるトロクスラー効果が組み合わさった錯視です。",
+    art: buildLilac,
+  },
+  {
+    id: "troxler",
+    title: "トロクスラー効果",
+    sub: "Troxler's Fading",
+    explain:
+      "中央の黒い点をじっと見つめ続けてください。視線を動かさずにいると、周辺のぼんやりした色の斑点が、数秒で消えて背景に溶け込みます。網膜が動かない刺激に慣れてしまうために起こる、消失の錯視です。",
+    art: buildTroxler,
+  },
+  {
+    id: "fraser-spiral",
+    title: "フレーザー錯視",
+    sub: "Fraser Spiral",
+    explain:
+      "渦巻きに見えますが、実際は中心が同じ複数の「円」です。傾いた縞の短い線分（より糸）を円に沿って並べると、円が渦巻きに見えます。指で1本の円をなぞると、ちゃんと閉じた円だとわかります。",
+    art: buildFraser,
+  },
 ];
 
 function buildCafeWall() {
@@ -443,4 +507,125 @@ function buildHelmholtz() {
       <div class="sq horiz"></div>
       <div class="sq vert"></div>
     </div>`;
+}
+
+function buildCheckerShadow() {
+  const cell = 32, cols = 8, rows = 7, ox = 12, oy = 12;
+  const light = "#b4b4b4", dark = "#5a5a5a";
+  const W = ox * 2 + cols * cell; // 280
+  const H = oy * 2 + rows * cell; // 248
+  let sq = "";
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const fill = (r + c) % 2 === 0 ? light : dark;
+      sq += `<rect x="${ox + c * cell}" y="${oy + r * cell}" width="${cell}" height="${cell}" fill="${fill}"/>`;
+    }
+  }
+  // 影：右側に斜めに落ちる半透明の黒（明るいマスを暗いマスと同じ明度まで落とす）
+  const shadow = `<polygon points="${ox + 5 * cell},${oy} ${W},${oy} ${W},${H} ${ox + 3 * cell},${H}" fill="rgba(0,0,0,0.5)"/>`;
+  // 円柱（影の落とし主）
+  const cyl =
+    `<rect x="206" y="40" width="40" height="74" fill="#7c8a5f"/>` +
+    `<ellipse cx="226" cy="114" rx="20" ry="8" fill="#5f6b48"/>` +
+    `<ellipse cx="226" cy="40" rx="20" ry="8" fill="#9aa97a"/>`;
+  const aC = [ox + 2 * cell + cell / 2, oy + 3 * cell + cell / 2]; // 明るい領域の暗いマス
+  const bC = [ox + 6 * cell + cell / 2, oy + 4 * cell + cell / 2]; // 影の中の明るいマス
+  const label = (p, t) =>
+    `<text x="${p[0]}" y="${p[1] + 7}" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="700" fill="#fff">${t}</text>`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${sq}${shadow}${cyl}${label(aC, "A")}${label(bC, "B")}</svg>`;
+}
+
+function buildCornsweet() {
+  return `<div class="cornsweet"></div>`;
+}
+
+function buildWundt() {
+  const W = 320, H = 240, cy = 120;
+  let p = "";
+  // 左右の焦点へ収束する放射線（中央が凹んで見える）
+  const foci = [-30, 350];
+  foci.forEach((fx) => {
+    for (let i = 0; i < 22; i++) {
+      const a = (i / 21 - 0.5) * 1.5; // 扇状に広がる角度
+      const dir = fx < 0 ? 1 : -1;
+      p += svgLine(fx, cy, fx + dir * 420, cy + Math.tan(a) * 420, "#9aa0aa", 1);
+    }
+  });
+  // まっすぐな2本の縦線
+  p += svgLine(110, 18, 110, 222, "#e53935", 4);
+  p += svgLine(210, 18, 210, 222, "#e53935", 4);
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildSander() {
+  const W = 390, H = 240;
+  const A = [20, 200], B = [90, 70], C = [370, 70], D = [300, 200];
+  const M = [160, 200], N = [230, 70]; // 仕切り（辺と平行）
+  const ink = "#141414";
+  let p = "";
+  // 外周
+  p += svgLine(A[0], A[1], B[0], B[1], ink, 3);
+  p += svgLine(B[0], B[1], C[0], C[1], ink, 3);
+  p += svgLine(C[0], C[1], D[0], D[1], ink, 3);
+  p += svgLine(D[0], D[1], A[0], A[1], ink, 3);
+  // 仕切り
+  p += svgLine(M[0], M[1], N[0], N[1], ink, 3);
+  // 2本の対角線（A→N と M→C、長さは等しい）
+  p += svgLine(A[0], A[1], N[0], N[1], "#e53935", 4);
+  p += svgLine(M[0], M[1], C[0], C[1], "#e53935", 4);
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildBezold() {
+  return `
+    <div class="bezold">
+      <div class="pane black"></div>
+      <div class="pane white"></div>
+    </div>`;
+}
+
+function buildLilac() {
+  const n = 12, R = 120, dur = 1.2;
+  let dots = "";
+  for (let i = 0; i < n; i++) {
+    const a = (i * 360) / n;
+    const delay = ((i * dur) / n).toFixed(3);
+    dots += `<span class="d" style="transform:rotate(${a}deg) translate(0,-${R}px);animation-delay:${delay}s"></span>`;
+  }
+  return `<div class="lilac"><div class="cross"></div>${dots}</div>`;
+}
+
+function buildTroxler() {
+  const cx = 160, cy = 160, R = 110, n = 7;
+  const cols = ["#caa6d6", "#a6c6d6", "#d6c2a6", "#a6d6b4", "#d6a6b4", "#b4a6d6", "#c6d6a6"];
+  let blobs = "";
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2;
+    const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R;
+    blobs += `<span class="blob" style="left:${x}px;top:${y}px;background:${cols[i]}"></span>`;
+  }
+  return `<div class="troxler">${blobs}<span class="fix"></span></div>`;
+}
+
+function buildFraser() {
+  const cx = 160, cy = 160, W = 320, H = 320, cs = 20;
+  let bg = "";
+  for (let y = 0; y < H; y += cs) {
+    for (let x = 0; x < W; x += cs) {
+      const on = ((x / cs) + (y / cs)) % 2 === 0;
+      bg += `<rect x="${x}" y="${y}" width="${cs}" height="${cs}" fill="${on ? "#777" : "#8b8b8b"}"/>`;
+    }
+  }
+  let rings = "";
+  for (let Rr = 34; Rr <= 150; Rr += 23) {
+    const seg = Math.max(16, Math.round(Rr * 0.5));
+    for (let i = 0; i < seg; i++) {
+      const a = (i / seg) * Math.PI * 2;
+      const x = cx + Math.cos(a) * Rr, y = cy + Math.sin(a) * Rr;
+      const tilt = (a * 180) / Math.PI + 90 + 35; // 接線から35°ひねる＝より糸
+      const col = i % 2 === 0 ? "#141414" : "#f4f4f4";
+      rings += `<rect x="${x - 9}" y="${y - 3}" width="18" height="6" rx="2" fill="${col}" transform="rotate(${tilt} ${x} ${y})"/>`;
+    }
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${bg}${rings}</svg>`;
 }
