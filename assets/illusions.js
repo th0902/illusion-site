@@ -304,6 +304,70 @@ window.ILLUSIONS = [
       "中央の白い点をじっと見つめ続けてください。青い格子がゆっくり回り続けると、はっきり見えていた黄色い点が、ときどき消えてしまいます。動く背景に脳が注意を奪われ、止まっているものを見落とす現象です。視線を外すと黄色い点はすぐ戻ります。",
     art: buildMotionBlindness,
   },
+  {
+    id: "impossible-trident",
+    title: "悪魔のフォーク",
+    sub: "Impossible Trident",
+    explain:
+      "右側を見ると丸い棒が3本、左側を見ると四角い棒が2本あります。左右を別々に見るとどちらも自然なのに、全体は現実には作れない「不可能図形」です。手前の輪郭線がどこにもつながらず、脳が3本と2本をうまく統合できないために生じます。",
+    art: buildImpossibleTrident,
+  },
+  {
+    id: "schroeder",
+    title: "シュレーダーの階段",
+    sub: "Schröder Staircase",
+    explain:
+      "階段が見えますが、上り階段にも、ひっくり返った天井裏の張り出しにも見えます。どちらが手前かを決める手がかりがないため、見つめていると2つの解釈がパッと入れ替わります。ネッカーの立方体と同じ、多義図形の一種です。",
+    art: buildSchroeder,
+  },
+  {
+    id: "kanizsa-square",
+    title: "カニッツァの四角形",
+    sub: "Kanizsa Square",
+    explain:
+      "実際には描かれていない白い四角形が、くっきりと浮かび上がって見えます。背景より少し明るくも感じられます。4つの欠けた円（パックマン）の切り口を、脳が「四角形に隠されている」と補完するために生じる、主観的輪郭の代表例です。",
+    art: buildKanizsaSquare,
+  },
+  {
+    id: "chubb",
+    title: "チャブ錯視",
+    sub: "Chubb Illusion",
+    explain:
+      "左右の円の中身は、まったく同じ薄いまだら模様です。無地の灰色の上に置くと、はっきりした濃淡に見えますが、強いコントラストの背景の上に置くと、ぼやけて淡く見えます。周囲のコントラストが、模様の濃淡の見え方を変えてしまいます。",
+    art: buildChubb,
+  },
+  {
+    id: "pinna",
+    title: "ピンナ＝ブレルスタッフ錯視",
+    sub: "Pinna–Brelstaff Illusion",
+    explain:
+      "止まっている図形です。中央の点を見つめたまま、顔を画面に近づけたり遠ざけたりしてください。内側と外側の輪が、互いに逆向きに回転して見えます。傾いた小さな四角の明暗の手がかりを、脳が動きとして誤って処理するために生じます。",
+    art: buildPinna,
+  },
+  {
+    id: "chromostereopsis",
+    title: "色立体視",
+    sub: "Chromostereopsis",
+    explain:
+      "黒地に赤と青の帯を並べただけですが、赤が手前に、青が奥に（人によっては逆に）浮き出て、立体的に見えます。赤い光と青い光が目の中で屈折する角度が違い、わずかに違う奥行きにピントが合うために生じます。",
+    art: buildChromostereopsis,
+  },
+  {
+    id: "afterimage-flag",
+    title: "国旗の残像",
+    sub: "Afterimage Flag",
+    explain:
+      "上の旗の中心にある白い点を20〜30秒見つめ続けてから、下の白い面の＋に視線を移してください。シアン・黒・オレンジの旗が、補色である赤・白・青の星条旗になって残像で浮かびます。疲れた視細胞が反対の色を強く感じるためです。",
+    art: buildAfterimageFlag,
+  },
+  {
+    id: "motion-aftereffect",
+    title: "運動残効（滝の錯視）",
+    sub: "Motion Aftereffect",
+    explain:
+      "回転する渦巻きの中心を、20秒ほどじっと見つめてください。そのあと止まっているもの（自分の手や下の文章）に視線を移すと、それが逆向きに動いて見えます。一方向の動きに慣れた脳が、静止を「逆向きの動き」と感じるために生じます。",
+    art: buildMotionAftereffect,
+  },
 ];
 
 function buildCafeWall() {
@@ -849,4 +913,140 @@ function buildMotionBlindness() {
     `<circle cx="150" cy="205" r="7" fill="#f5d20a"/>`;
   const fix = `<rect x="147" y="147" width="6" height="6" fill="#fff"/>`;
   return `<div class="mib"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#101626"/><g class="mib-spin">${plus}</g>${dots}${fix}</svg></div>`;
+}
+
+function buildImpossibleTrident() {
+  const col = "#141414", w = 3;
+  const L = (a, b, c, d) => svgLine(a, b, c, d, col, w);
+  const arc = (x0, y0, x1, y1, r, sweep) =>
+    `<path d="M ${x0} ${y0} A ${r} ${r} 0 0 ${sweep} ${x1} ${y1}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
+  let p = "";
+  // 外枠
+  p += L(40, 45, 300, 45) + L(40, 155, 300, 155) + L(40, 45, 40, 155);
+  // 右端の丸いキャップ（3本の棒）
+  p += arc(300, 45, 300, 79, 17, 1) + arc(300, 83, 300, 117, 17, 1) + arc(300, 121, 300, 155, 17, 1);
+  // 内側の線：A・D は途中で消え、B・C は左まで延びて溝になる
+  p += L(160, 79, 300, 79) + L(160, 121, 300, 121);
+  p += L(70, 83, 300, 83) + L(70, 117, 300, 117);
+  p += arc(70, 117, 70, 83, 17, 0); // 溝の左端の丸い閉じ
+  return `<svg width="340" height="200" viewBox="0 0 340 200">${p}</svg>`;
+}
+
+function buildSchroeder() {
+  const n = 5, x0 = 48, y0 = 55, hw = 42, vh = 32, dy = 54;
+  const top = [];
+  let x = x0, y = y0;
+  top.push([x, y]);
+  for (let i = 0; i < n; i++) { x += hw; top.push([x, y]); y += vh; top.push([x, y]); }
+  const bot = top.map(([px, py]) => [px, py + dy]);
+  const str = (a) => a.map((p) => p.join(",")).join(" ");
+  const band = `<polygon points="${str(top)} ${str(bot.slice().reverse())}" fill="#fff"/>`;
+  const tline = `<polyline points="${str(top)}" fill="none" stroke="#141414" stroke-width="3"/>`;
+  const bline = `<polyline points="${str(bot)}" fill="none" stroke="#141414" stroke-width="3"/>`;
+  const cap1 = svgLine(top[0][0], top[0][1], bot[0][0], bot[0][1], "#141414", 3);
+  const e = top.length - 1;
+  const cap2 = svgLine(top[e][0], top[e][1], bot[e][0], bot[e][1], "#141414", 3);
+  return `<svg width="320" height="300" viewBox="0 0 320 300">${band}${tline}${bline}${cap1}${cap2}</svg>`;
+}
+
+function buildKanizsaSquare() {
+  const cx = 150, cy = 150, off = 72, r = 36;
+  const centers = [
+    [cx - off, cy - off, 45], [cx + off, cy - off, 135],
+    [cx + off, cy + off, 225], [cx - off, cy + off, 315],
+  ];
+  const pac = (x, y, phi) => {
+    const a0 = ((phi - 45) * Math.PI) / 180, a1 = ((phi + 45) * Math.PI) / 180;
+    const x0 = (x + r * Math.cos(a0)).toFixed(1), y0 = (y + r * Math.sin(a0)).toFixed(1);
+    const x1 = (x + r * Math.cos(a1)).toFixed(1), y1 = (y + r * Math.sin(a1)).toFixed(1);
+    return `<path d="M ${x} ${y} L ${x0} ${y0} A ${r} ${r} 0 1 1 ${x1} ${y1} Z" fill="#141414"/>`;
+  };
+  return `<svg width="300" height="300" viewBox="0 0 300 300">${centers.map((c) => pac(c[0], c[1], c[2])).join("")}</svg>`;
+}
+
+function buildChubb() {
+  return `<svg width="320" height="220" viewBox="0 0 320 220">
+    <defs>
+      <pattern id="chubbLow" width="16" height="16" patternUnits="userSpaceOnUse">
+        <rect width="16" height="16" fill="#8f8f8f"/>
+        <rect width="8" height="8" fill="#717171"/>
+        <rect x="8" y="8" width="8" height="8" fill="#717171"/>
+      </pattern>
+      <pattern id="chubbHi" width="16" height="16" patternUnits="userSpaceOnUse">
+        <rect width="16" height="16" fill="#e6e6e6"/>
+        <rect width="8" height="8" fill="#1a1a1a"/>
+        <rect x="8" y="8" width="8" height="8" fill="#1a1a1a"/>
+      </pattern>
+      <clipPath id="chubbC1"><circle cx="85" cy="110" r="62"/></clipPath>
+      <clipPath id="chubbC2"><circle cx="235" cy="110" r="62"/></clipPath>
+    </defs>
+    <rect x="0" y="0" width="160" height="220" fill="#808080"/>
+    <rect x="160" y="0" width="160" height="220" fill="url(#chubbHi)"/>
+    <rect width="320" height="220" fill="url(#chubbLow)" clip-path="url(#chubbC1)"/>
+    <rect width="320" height="220" fill="url(#chubbLow)" clip-path="url(#chubbC2)"/>
+  </svg>`;
+}
+
+function buildPinna() {
+  const cx = 160, cy = 160, W = 320, H = 320;
+  let g = "";
+  [[74, 1], [120, -1]].forEach(([R, tilt]) => {
+    const n = Math.round(R * 0.2);
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R;
+      const rot = (a * 180) / Math.PI + 90 + tilt * 28; // 接線からひねる
+      const h = 8;
+      g += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(1)})">` +
+        `<path d="M ${-h} ${h} L ${-h} ${-h} L ${h} ${-h}" fill="none" stroke="#111" stroke-width="3"/>` +
+        `<path d="M ${h} ${-h} L ${h} ${h} L ${-h} ${h}" fill="none" stroke="#fff" stroke-width="3"/>` +
+        `</g>`;
+    }
+  });
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#8a8a8a"/><circle cx="${cx}" cy="${cy}" r="4" fill="#111"/>${g}</svg>`;
+}
+
+function buildChromostereopsis() {
+  const W = 320, H = 220;
+  let s = "", i = 0;
+  for (let x = 12; x < W - 12; x += 34) {
+    const c = i % 2 === 0 ? "#ff1f1f" : "#1f3cff";
+    s += `<rect x="${x}" y="22" width="22" height="${H - 44}" rx="3" fill="${c}"/>`;
+    i++;
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#000"/>${s}</svg>`;
+}
+
+function buildAfterimageFlag() {
+  const fw = 200, fh = 130, sx = 60, sy = 16;
+  const stripeH = fh / 13;
+  let stripes = "";
+  for (let i = 0; i < 13; i++) {
+    const c = i % 2 === 0 ? "#23c7c7" : "#111";
+    stripes += `<rect x="${sx}" y="${(sy + i * stripeH).toFixed(2)}" width="${fw}" height="${stripeH.toFixed(2)}" fill="${c}"/>`;
+  }
+  const cantonW = fw * 0.42, cantonH = stripeH * 7;
+  let stars = "";
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) {
+    stars += `<circle cx="${(sx + 11 + c * 15).toFixed(1)}" cy="${(sy + 11 + r * 15).toFixed(1)}" r="2.4" fill="#111"/>`;
+  }
+  const canton = `<rect x="${sx}" y="${sy}" width="${cantonW}" height="${cantonH}" fill="#ff8c1a"/>${stars}`;
+  const dot = `<circle cx="${sx + fw / 2}" cy="${sy + fh / 2}" r="3.5" fill="#fff"/>`;
+  const by = sy + fh + 26;
+  const blank = `<rect x="${sx}" y="${by}" width="${fw}" height="${fh}" fill="#fff" stroke="#ccc"/>` +
+    `<text x="${sx + fw / 2}" y="${by + fh / 2 + 8}" text-anchor="middle" font-size="24" fill="#aaa">+</text>`;
+  const H = by + fh + sy;
+  return `<svg width="320" height="${H}" viewBox="0 0 320 ${H}">${stripes}${canton}${dot}${blank}</svg>`;
+}
+
+function buildMotionAftereffect() {
+  const cx = 150, cy = 150, turns = 5, steps = 420, k = 4.3;
+  const pts = [];
+  for (let i = 0; i <= steps; i++) {
+    const th = (i / steps) * turns * 2 * Math.PI;
+    const r = k * th;
+    pts.push((cx + r * Math.cos(th)).toFixed(1) + "," + (cy + r * Math.sin(th)).toFixed(1));
+  }
+  const path = `<polyline points="${pts.join(" ")}" fill="none" stroke="#141414" stroke-width="11" stroke-linecap="round"/>`;
+  return `<div class="spiral-ame"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="142" fill="#fff" stroke="#141414" stroke-width="2"/>${path}</svg></div>`;
 }
