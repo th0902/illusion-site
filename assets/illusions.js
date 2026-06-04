@@ -796,7 +796,10 @@ function buildPenrose() {
     face([[x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1]], "#dcdcdc") +
     face([[x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1]], "#a9a9a9") +
     face([[x0, y1, z0], [x1, y1, z0], [x1, y1, z1], [x0, y1, z1]], "#7e7e7e");
-  return `<svg width="300" height="300" viewBox="0 0 300 300">${boxes.map(box).join("")}</svg>`;
+  // 描画順：縦材 → 右上材 → 下材。各角材が次の角材の手前に出て、循環した
+  // 前後関係（＝不可能接合）になるようにする
+  const order = [boxes[2], boxes[0], boxes[1]];
+  return `<svg width="300" height="300" viewBox="0 0 300 300">${order.map(box).join("")}</svg>`;
 }
 
 function buildOuchi() {
