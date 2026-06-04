@@ -240,6 +240,70 @@ window.ILLUSIONS = [
       "渦巻きに見えますが、実際は中心が同じ複数の「円」です。傾いた縞の短い線分（より糸）を円に沿って並べると、円が渦巻きに見えます。指で1本の円をなぞると、ちゃんと閉じた円だとわかります。",
     art: buildFraser,
   },
+  {
+    id: "penrose-triangle",
+    title: "ペンローズの三角形",
+    sub: "Penrose Triangle",
+    explain:
+      "3本の角材が三角形に組まれていますが、現実には作れない「不可能図形」です。それぞれの角の接続は正しく見えるのに、全体としてはあり得ない立体になっています。脳が各部分を局所的に立体として解釈し、全体の矛盾には気づきにくいために成立します。",
+    art: buildPenrose,
+  },
+  {
+    id: "ouchi",
+    title: "大内錯視",
+    sub: "Ouchi Illusion",
+    explain:
+      "縞の向きが違うだけの、止まっている模様です。中央の円板だけ縞の向きが90度ずれているため、視線を動かすと円板が背景から浮き上がり、ゆらゆらと別々に動いて見えます。向きの異なる領域を脳が別の面として分離するために生じます。",
+    art: buildOuchi,
+  },
+  {
+    id: "rotating-snakes",
+    title: "蛇の回転",
+    sub: "Rotating Snakes",
+    explain:
+      "完全に静止した画像ですが、見ていない周辺の輪が、ゆっくり回転して見えます。黒・濃い色・白・明るい色という非対称な明暗の並びが、視線を動かすたびに脳に「動いた」と誤らせます。中心の1点をじっと見つめると、回転は止まります。",
+    art: buildRotatingSnakes,
+  },
+  {
+    id: "munker",
+    title: "ムンカー錯視",
+    sub: "Munker Illusion",
+    explain:
+      "3列の丸は、すべてまったく同じオレンジ色です。手前を横切る縞の色が違うだけで、左の丸はピンクがかって、右の丸は黄緑がかって見えます。色が隣り合う色に近づいて見える「同化」によって、同じ色が違う色に見えます。",
+    art: buildMunker,
+  },
+  {
+    id: "neon-spreading",
+    title: "ネオンカラー拡散",
+    sub: "Neon Color Spreading",
+    explain:
+      "格子の中央付近だけ線が水色になっています。すると、線のない部分にまで水色がにじみ出し、ぼんやりとした水色の円板が浮かんで見えます。ネオン管のような発光に見えることから名付けられた、主観的な色の錯視です。",
+    art: buildNeon,
+  },
+  {
+    id: "benham-disc",
+    title: "ベンハムのコマ",
+    sub: "Benham's Disc",
+    explain:
+      "白黒だけの模様が回転すると、うっすらと色の帯（赤・緑・青など）が見えてきます。視細胞が色ごとに反応の速さが違うため、点滅する白黒から幻の色が生まれます。回転の向きや速さを変えると、見える色も変わります。",
+    art: buildBenham,
+  },
+  {
+    id: "vasarely",
+    title: "ヴァザルリ錯視",
+    sub: "Vasarely Illusion",
+    explain:
+      "暗い色から明るい色へ、入れ子になった正方形を重ねています。すると、四隅から中心へ向かって、描かれていないはずの明るい（または暗い）対角線の筋がうっすらと見えます。各正方形の角で明暗差が強調されるために生じます。",
+    art: buildVasarely,
+  },
+  {
+    id: "motion-blindness",
+    title: "運動誘発盲",
+    sub: "Motion-Induced Blindness",
+    explain:
+      "中央の白い点をじっと見つめ続けてください。青い格子がゆっくり回り続けると、はっきり見えていた黄色い点が、ときどき消えてしまいます。動く背景に脳が注意を奪われ、止まっているものを見落とす現象です。視線を外すと黄色い点はすぐ戻ります。",
+    art: buildMotionBlindness,
+  },
 ];
 
 function buildCafeWall() {
@@ -628,4 +692,161 @@ function buildFraser() {
     }
   }
   return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${bg}${rings}</svg>`;
+}
+
+function buildPenrose() {
+  const s = 27, n = 5, t = 1.4; // 角材の長さ n・太さ t
+  const U = [Math.cos(Math.PI / 6), Math.sin(Math.PI / 6)]; // x軸 → 右下
+  const V = [-Math.cos(Math.PI / 6), Math.sin(Math.PI / 6)]; // y軸 → 左下
+  const Wv = [0, -1]; // z軸 → 上
+  const raw = (x, y, z) => [
+    (x * U[0] + y * V[0] + z * Wv[0]) * s,
+    (x * U[1] + y * V[1] + z * Wv[1]) * s,
+  ];
+  // 3本の角材を三角形の各辺に沿って配置（投影上で端が始点に重なり、閉じて見える）
+  const boxes = [
+    [0, n, 0, t, 0, t],         // 右下へ伸びる材
+    [n - t, n, 0, n, 0, t],     // 左下へ伸びる材
+    [n - t, n, n - t, n, 0, n], // 上へ伸びる材
+  ];
+  // 自動センタリング用に全頂点の範囲を求める
+  let minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+  boxes.forEach(([x0, x1, y0, y1, z0, z1]) => {
+    [[x0, y0, z0], [x1, y1, z1], [x1, y0, z0], [x0, y1, z1], [x1, y1, z0], [x0, y0, z1]].forEach((p) => {
+      const q = raw(p[0], p[1], p[2]);
+      minX = Math.min(minX, q[0]); maxX = Math.max(maxX, q[0]);
+      minY = Math.min(minY, q[1]); maxY = Math.max(maxY, q[1]);
+    });
+  });
+  const ox = 150 - (minX + maxX) / 2, oy = 150 - (minY + maxY) / 2;
+  const P = (x, y, z) => {
+    const q = raw(x, y, z);
+    return (q[0] + ox).toFixed(1) + " " + (q[1] + oy).toFixed(1);
+  };
+  const face = (pts, fill) => {
+    const d = pts.map((p, i) => (i ? "L" : "M") + P(p[0], p[1], p[2])).join(" ") + " Z";
+    return `<path d="${d}" fill="${fill}" stroke="#1a1a1a" stroke-width="2" stroke-linejoin="round"/>`;
+  };
+  // 直方体の見える3面（上＝明 / +x＝中 / +y＝暗）
+  const box = ([x0, x1, y0, y1, z0, z1]) =>
+    face([[x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1]], "#dcdcdc") +
+    face([[x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1]], "#a9a9a9") +
+    face([[x0, y1, z0], [x1, y1, z0], [x1, y1, z1], [x0, y1, z1]], "#7e7e7e");
+  return `<svg width="300" height="300" viewBox="0 0 300 300">${boxes.map(box).join("")}</svg>`;
+}
+
+function buildOuchi() {
+  return `<svg width="300" height="300" viewBox="0 0 300 300">
+    <defs>
+      <pattern id="ouchiOut" width="32" height="16" patternUnits="userSpaceOnUse">
+        <rect width="32" height="16" fill="#fff"/>
+        <rect x="0" y="0" width="16" height="8" fill="#161616"/>
+        <rect x="16" y="8" width="16" height="8" fill="#161616"/>
+      </pattern>
+      <pattern id="ouchiIn" width="16" height="32" patternUnits="userSpaceOnUse">
+        <rect width="16" height="32" fill="#fff"/>
+        <rect x="0" y="0" width="8" height="16" fill="#161616"/>
+        <rect x="8" y="16" width="8" height="16" fill="#161616"/>
+      </pattern>
+      <clipPath id="ouchiClip"><circle cx="150" cy="150" r="74"/></clipPath>
+    </defs>
+    <rect width="300" height="300" fill="url(#ouchiOut)"/>
+    <rect width="300" height="300" fill="url(#ouchiIn)" clip-path="url(#ouchiClip)"/>
+  </svg>`;
+}
+
+function buildRotatingSnakes() {
+  const cx = 160, cy = 160, W = 320, H = 320;
+  // 黒→青→白→黄 の非対称な明暗列が周辺ドリフトを生む
+  const seq = ["#0b0b0b", "#13379c", "#f7f7f7", "#f4c20a"];
+  let t = "", ringIdx = 0;
+  for (let R = 40; R <= 150; R += 24) {
+    const n = Math.round(R * 0.28);
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R;
+      const rot = (a * 180) / Math.PI + 90;
+      const col = seq[(i + ringIdx) % 4];
+      t += `<rect x="${(x - 13).toFixed(1)}" y="${(y - 7).toFixed(1)}" width="26" height="14" rx="3" fill="${col}" transform="rotate(${rot.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
+    }
+    ringIdx++;
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#8c8c8c"/>${t}</svg>`;
+}
+
+function buildMunker() {
+  const W = 330, H = 210, base = "#d99a3a";
+  let c = "";
+  const cols = [60, 165, 270], ys = [55, 105, 155];
+  cols.forEach((cx) => ys.forEach((cy) => {
+    c += `<circle cx="${cx}" cy="${cy}" r="26" fill="${base}"/>`;
+  }));
+  let s = "";
+  for (let x = 0; x < 110; x += 12) s += `<rect x="${x}" y="0" width="6" height="${H}" fill="#d11fd1"/>`;
+  for (let x = 220; x < W; x += 12) s += `<rect x="${x}" y="0" width="6" height="${H}" fill="#1fc24a"/>`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#fff"/>${c}${s}</svg>`;
+}
+
+function buildNeon() {
+  const W = 300, H = 300, cx = 150, cy = 150, r = 66;
+  const grid = (color) => {
+    let g = "";
+    for (let x = 18; x <= W - 18; x += 22) g += svgLine(x, 18, x, H - 18, color, 2);
+    for (let y = 18; y <= H - 18; y += 22) g += svgLine(18, y, W - 18, y, color, 2);
+    return g;
+  };
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+    <defs><clipPath id="neonClip"><circle cx="${cx}" cy="${cy}" r="${r}"/></clipPath></defs>
+    <rect width="${W}" height="${H}" fill="#fff"/>
+    ${grid("#141414")}
+    <g clip-path="url(#neonClip)">${grid("#22b6e6")}</g>
+  </svg>`;
+}
+
+function buildBenham() {
+  const cx = 120, cy = 120, Rd = 110;
+  let p = `<circle cx="${cx}" cy="${cy}" r="${Rd}" fill="#fff" stroke="#111" stroke-width="2"/>`;
+  // 左半分を黒で塗る
+  p += `<path d="M ${cx} ${cy - Rd} A ${Rd} ${Rd} 0 0 0 ${cx} ${cy + Rd} Z" fill="#111"/>`;
+  // 白い右半分に、半径の異なる弧を4組
+  const bands = [[0.30, -72, -32], [0.50, -22, 18], [0.70, 28, 68], [0.88, 78, 86]];
+  bands.forEach(([rf, a0, a1]) => {
+    const R = Rd * rf;
+    for (let k = 0; k < 3; k++) {
+      const rr = R - k * 5;
+      const A0 = (a0 * Math.PI) / 180, A1 = (a1 * Math.PI) / 180;
+      const x0 = cx + Math.cos(A0) * rr, y0 = cy + Math.sin(A0) * rr;
+      const x1 = cx + Math.cos(A1) * rr, y1 = cy + Math.sin(A1) * rr;
+      p += `<path d="M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${rr.toFixed(1)} ${rr.toFixed(1)} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="#111" stroke-width="3"/>`;
+    }
+  });
+  return `<div class="benham"><svg width="240" height="240" viewBox="0 0 240 240">${p}</svg></div>`;
+}
+
+function buildVasarely() {
+  const C = 150, n = 16, max = 140;
+  let r = "";
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1);
+    const g = Math.round(18 + t * 216);
+    const h = max * (1 - i / n);
+    r += `<rect x="${(C - h).toFixed(1)}" y="${(C - h).toFixed(1)}" width="${(2 * h).toFixed(1)}" height="${(2 * h).toFixed(1)}" fill="rgb(${g},${g},${g})"/>`;
+  }
+  return `<svg width="300" height="300" viewBox="0 0 300 300">${r}</svg>`;
+}
+
+function buildMotionBlindness() {
+  const W = 300, H = 300;
+  let plus = "";
+  for (let gx = 30; gx <= 270; gx += 40) {
+    for (let gy = 30; gy <= 270; gy += 40) {
+      plus += `<path d="M ${gx - 6} ${gy} H ${gx + 6} M ${gx} ${gy - 6} V ${gy + 6}" stroke="#3b6fe0" stroke-width="2"/>`;
+    }
+  }
+  const dots =
+    `<circle cx="100" cy="100" r="7" fill="#f5d20a"/>` +
+    `<circle cx="200" cy="100" r="7" fill="#f5d20a"/>` +
+    `<circle cx="150" cy="205" r="7" fill="#f5d20a"/>`;
+  const fix = `<rect x="147" y="147" width="6" height="6" fill="#fff"/>`;
+  return `<div class="mib"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#101626"/><g class="mib-spin">${plus}</g>${dots}${fix}</svg></div>`;
 }
