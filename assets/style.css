@@ -418,6 +418,65 @@ footer.site {
 .benham svg { transform-origin: 50% 50%; animation: spin .34s linear infinite; }
 .mib .mib-spin { transform-box: view-box; transform-origin: 150px 150px; animation: spin 9s linear infinite; }
 .spiral-ame svg { transform-origin: 50% 50%; animation: spin 7s linear infinite; }
+.stereokin svg { transform-origin: 50% 50%; animation: spin 4.5s linear infinite; }
+
+/* Stepping feet */
+.stepfeet { position: relative; width: 352px; height: 230px; overflow: hidden; }
+.stepfeet .bg { position: absolute; inset: 0; display: flex; }
+.stepfeet .bg div { flex: 1; }
+.stepfeet .bg .k { background: #0c0c0c; }
+.stepfeet .bg .w { background: #fff; }
+.stepfeet .bar {
+  position: absolute; left: 0; width: 64px; height: 26px;
+  animation: stepMove 2.2s linear infinite alternate;
+}
+.stepfeet .yellow { top: 72px; background: #f3c10a; }
+.stepfeet .blue { top: 130px; background: #1f3cff; }
+@keyframes stepMove { from { transform: translateX(0); } to { transform: translateX(288px); } }
+
+/* 仮現運動（ファイ現象） */
+.phi { position: relative; width: 300px; height: 140px; background: #101626; }
+.phi span {
+  position: absolute; top: 50%; width: 44px; height: 44px; margin-top: -22px;
+  border-radius: 50%; background: #f3c10a;
+  animation: phiBlink .7s steps(1) infinite;
+}
+.phi .a { left: 46px; }
+.phi .b { right: 46px; animation-delay: .35s; }
+@keyframes phiBlink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
+/* ワゴンホイール（コマ送り回転：1コマ=36° > スポーク間隔30° → 逆回転に見える） */
+.wagon svg { animation: spin 1.44s steps(12) infinite; transform-origin: 50% 50%; }
+
+/* バーバーポール */
+.barber { display: flex; gap: 60px; align-items: center; }
+.barber .win { position: relative; overflow: hidden; border: 4px solid #141414; border-radius: 14px; }
+.barber .win.v { width: 84px; height: 240px; }
+.barber .win.h { width: 240px; height: 84px; }
+.barber .stripes {
+  position: absolute; top: -120px; left: -120px; width: 600px; height: 480px;
+  background: repeating-linear-gradient(45deg, #df3b26 0 22px, #fff 22px 44px);
+  animation: barberSlide 1.6s linear infinite;
+}
+@keyframes barberSlide { to { transform: translateX(-62.2px); } }
+
+/* フラッシュラグ */
+.flashlag .fl-bar { transform-box: view-box; transform-origin: 150px 150px; animation: spin 3s linear infinite; }
+.flashlag .fl-dot { animation: flFlash 3s steps(1) infinite; }
+@keyframes flFlash { 0% { opacity: 1; } 4% { opacity: 1; } 5% { opacity: 0; } 100% { opacity: 0; } }
+
+/* 曖昧な回転円筒（運動からの構造） */
+.sfm { position: relative; width: 300px; height: 220px; background: #101626; overflow: hidden; }
+.sfm span {
+  position: absolute; left: 0; width: 9px; height: 9px; border-radius: 50%;
+  background: #e8e8e8; animation: sfmMove 2.6s ease-in-out infinite;
+}
+@keyframes sfmMove { 0% { left: 18px; } 50% { left: 273px; } 100% { left: 18px; } }
+
+/* エイムズの窓 */
+.ames { perspective: 700px; width: 260px; height: 260px; display: flex; align-items: center; justify-content: center; }
+.ames-spin { animation: amesTurn 6s linear infinite; transform-style: preserve-3d; }
+@keyframes amesTurn { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }

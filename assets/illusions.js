@@ -125,7 +125,7 @@ window.ILLUSIONS = [
     title: "マッハバンド",
     sub: "Mach Bands",
     explain:
-      "明るさの異なる帯を段階的に並べると、それぞれの境目で暗い側はより暗く、明るい側はより明るい筋が見えます。各帯の内部は均一な色なのに、輪郭が強調されます。網膜の側抑制によるものです。",
+      "左の暗い面と右の明るい面を、なめらかなグラデーションでつないだだけの図です。それなのに、グラデーションの始まり（暗い側の折れ目）にはひときわ暗い帯が、終わり（明るい側の折れ目）にはひときわ明るい帯が見えます。明るさの変化の折れ目を、網膜の側抑制が強調するためです。",
     art: buildMach,
   },
   {
@@ -368,6 +368,438 @@ window.ILLUSIONS = [
       "回転する渦巻きの中心を、20秒ほどじっと見つめてください。そのあと止まっているもの（自分の手や下の文章）に視線を移すと、それが逆向きに動いて見えます。一方向の動きに慣れた脳が、静止を「逆向きの動き」と感じるために生じます。",
     art: buildMotionAftereffect,
   },
+  {
+    id: "oppel-kundt",
+    title: "オッペル・クント錯視",
+    sub: "Oppel-Kundt Illusion",
+    explain:
+      "左右の区間は同じ長さです。細かい目盛りで埋められた区間（右）は、何もない区間（左）より長く見えます。空間が分割されていると、距離を過大に見積もる傾向があるためです。",
+    art: buildOppelKundt,
+  },
+  {
+    id: "judd",
+    title: "ジャッド錯視",
+    sub: "Judd Illusion",
+    explain:
+      "赤い点はどちらも線分のちょうど真ん中にあります。両端の矢羽が同じ向きにそろうと、中点が矢羽の開いた側へずれて見えます。ミュラー・リヤー錯視の親戚で、長さではなく「位置」がずれて見える錯視です。",
+    art: buildJudd,
+  },
+  {
+    id: "brentano",
+    title: "ブレンターノ錯視",
+    sub: "Brentano Illusion",
+    explain:
+      "中央の矢羽から左右の矢羽までの距離は同じです。内向きの矢羽に挟まれた左半分は短く、外向きの矢羽に挟まれた右半分は長く見えます。ミュラー・リヤー錯視の2つの図形を1本につなげた形です。",
+    art: buildBrentano,
+  },
+  {
+    id: "baldwin",
+    title: "ボールドウィン錯視",
+    sub: "Baldwin Illusion",
+    explain:
+      "上下2本の線は同じ長さです。大きな正方形に挟まれた線は短く、小さな正方形に挟まれた線は長く見えます。両端の図形の大きさが、あいだの距離の見えを変えてしまいます。",
+    art: buildBaldwin,
+  },
+  {
+    id: "corridor",
+    title: "回廊錯視",
+    sub: "Corridor Illusion",
+    explain:
+      "2本の黄色い柱はまったく同じ大きさです。廊下の奥に置かれた柱のほうが、ずっと大きく見えます。遠くにあるのに網膜上で同じ大きさなら「実物はもっと大きいはず」と脳が補正するためです。",
+    art: buildCorridor,
+  },
+  {
+    id: "leaning-tower",
+    title: "斜塔錯視",
+    sub: "Leaning Tower Illusion",
+    explain:
+      "2つの塔はまったく同じ図形（同じ傾き）です。並べると、右の塔のほうがより倒れかかって見えます。2枚を別々の絵ではなく1つの場面として見るため、平行に立つはずの塔が「奥で交わらない＝傾きが違う」と解釈されてしまいます。",
+    art: buildLeaningTower,
+  },
+  {
+    id: "irradiation",
+    title: "光滲錯視",
+    sub: "Irradiation Illusion",
+    explain:
+      "黒地の白い正方形と、白地の黒い正方形は同じ大きさです。白い正方形のほうがひとまわり大きく見えます。明るい領域は網膜上でにじんで広がるように処理されるため、と考えられています。ヘルムホルツが詳しく調べた古典です。",
+    art: buildIrradiation,
+  },
+  {
+    id: "munsterberg",
+    title: "ミュンスターバーグ錯視",
+    sub: "Münsterberg Illusion",
+    explain:
+      "段ごとに半マスずつずらした市松模様の間に黒い線を引くと、水平な線が斜めに傾いて見えます。カフェウォール錯視の原型として知られる図形で、こちらは仕切り線が黒でも起こります。",
+    art: buildMunsterberg,
+  },
+  {
+    id: "tilt-contrast",
+    title: "傾きの対比",
+    sub: "Tilt Contrast",
+    explain:
+      "中央の円の中の縞は、左右どちらも完全に垂直です。傾いた縞に囲まれると、囲みと反対の方向へわずかに傾いて見えます。周囲の傾きとの「対比」で向きの知覚がずれる錯視です。",
+    art: buildTiltContrast,
+  },
+  {
+    id: "twisted-cord",
+    title: "より糸錯視",
+    sub: "Twisted Cord Illusion",
+    explain:
+      "黒白をねじり合わせた「より糸」はすべて水平です。市松模様の背景に重ねると、糸が交互に傾いて見えます。糸の細かいねじれの向きに、全体の向きの知覚が引きずられるためで、フレーザー錯視と同じ仕組みです。",
+    art: buildTwistedCord,
+  },
+  {
+    id: "text-tilt",
+    title: "文字列傾斜錯視",
+    sub: "Tilted Letter Rows",
+    explain:
+      "文字の行はすべて水平です。それでも行ごとに右上がり・右下がりに傾いて見えます。文字の中の斜めの線の向きがそろうと、行全体が傾いて見える、日本語でよく知られた錯視です。",
+    art: buildTextTilt,
+  },
+  {
+    id: "bourdon",
+    title: "ブルドン錯視",
+    sub: "Bourdon Illusion",
+    explain:
+      "2つの黒い三角形の左の縁は、1本のまっすぐな直線上に並んでいます。それでも、つなぎ目で「く」の字に折れ曲がって見えます。図形の重心や軸の向きに、輪郭の向きの知覚が引きずられるためです。",
+    art: buildBourdon,
+  },
+  {
+    id: "bulge",
+    title: "膨らみ錯視",
+    sub: "Bulge Illusion",
+    explain:
+      "市松模様のマス目はすべて水平・垂直の直線です。中央付近のマスの角に小さな点を置くと、中央がレンズのように膨らんで見えます。小さな点が作るわずかな傾きの手がかりが集まって、面全体の歪みとして知覚されます。",
+    art: buildBulge,
+  },
+  {
+    id: "curvature-blindness",
+    title: "曲線が折れ線に見える錯視",
+    sub: "Curvature Blindness",
+    explain:
+      "すべての線は同じなめらかな波線（サインカーブ）です。灰色の背景の上では、山と谷で色が切り替わる波線だけが、カクカクの折れ線（ジグザグ）に見えます。2017年に高橋康介氏が報告した新しい錯視です。",
+    art: buildCurvatureBlindness,
+  },
+  {
+    id: "curvature-contrast",
+    title: "曲率の対比",
+    sub: "Curvature Contrast",
+    explain:
+      "中央の2本の赤い弧は、まったく同じ曲がり具合です。強く曲がった弧に囲まれると平らに、まっすぐに近い弧に囲まれると強く曲がって見えます。周囲との対比で「曲がり具合」の知覚がずれます。",
+    art: buildCurvatureContrast,
+  },
+  {
+    id: "koffka-ring",
+    title: "コフカのリング",
+    sub: "Koffka Ring",
+    explain:
+      "左の図のリングは均一な灰色で、ほぼ一様に見えます。右の図のように半分に割って上下にずらすと、暗い背景側の半リングは明るく、明るい背景側の半リングは暗く、はっきり違って見えます。ひとつながりに見えるかどうかで、明るさの知覚が変わります。",
+    art: buildKoffkaRing,
+  },
+  {
+    id: "benary-cross",
+    title: "ベナリーの十字",
+    sub: "Benary Cross",
+    explain:
+      "2つの灰色の三角形は同じ明るさです。黒い十字の内側に置かれた三角形のほうが、外側の三角形より明るく見えます。単純な周囲との対比ではなく、図形がどこに「所属」して見えるかが明るさを決めることを示します。",
+    art: buildBenary,
+  },
+  {
+    id: "dungeon",
+    title: "ダンジョン錯視",
+    sub: "Dungeon Illusion",
+    explain:
+      "中央の格子状の小さな正方形は、左右とも同じ灰色です。白い格子に囲まれた側は明るく、黒い格子に囲まれた側は暗く（または逆に）見えます。周囲の格子の色に「同化」して見える錯視です。",
+    art: buildDungeon,
+  },
+  {
+    id: "transparency",
+    title: "透明視",
+    sub: "Perceptual Transparency",
+    explain:
+      "中央に「半透明の灰色の板」が乗っているように見えますが、描かれているのは不透明な4色の長方形だけです。境界での明るさの組み合わせが半透明のときの法則に合っていると、脳は「透けた板が手前にある」という解釈を作り出します。",
+    art: buildTransparency,
+  },
+  {
+    id: "chevreul",
+    title: "シェブルール錯視",
+    sub: "Chevreul Illusion",
+    explain:
+      "それぞれの帯の中は完全に均一な明るさです。並べると、各帯の暗い隣との境目は明るく、明るい隣との境目は暗く見え、帯の内部に勾配があるように感じられます。網膜の側抑制が境目の差を強調するためです。",
+    art: buildChevreul,
+  },
+  {
+    id: "gradient-contrast",
+    title: "グラデーション対比",
+    sub: "Gradient Contrast",
+    explain:
+      "中央の横棒は端から端まで完全に均一な灰色です。背景が左から右へ暗→明と変化すると、棒は逆に左が明るく右が暗い、グラデーションがかかったように見えます。場所ごとの背景との対比が棒の中に勾配を作り出します。",
+    art: buildGradientContrast,
+  },
+  {
+    id: "glare",
+    title: "グレア錯視",
+    sub: "Glare Illusion",
+    explain:
+      "左右の中央の白い領域は、画面上ではまったく同じ白です。周囲から中心へ向かって明るくなるグラデーションで囲むと（左）、中心がまぶしく発光しているように見えます。実際に瞳孔が縮むことも報告されている錯視です。",
+    art: buildGlare,
+  },
+  {
+    id: "liebmann",
+    title: "リープマン効果",
+    sub: "Liebmann Effect",
+    explain:
+      "上下の図形は色だけが違います。背景と図形の明るさ（輝度）がほぼ同じになると（上）、色ははっきり違うのに輪郭がゆらゆらと不安定になり、形が読み取りにくくなります。形の知覚が色の違いではなく明るさの違いに頼っていることを示します。",
+    art: buildLiebmann,
+  },
+  {
+    id: "color-contrast",
+    title: "色の同時対比",
+    sub: "Chromatic Simultaneous Contrast",
+    explain:
+      "中央の2つの小さな四角は、まったく同じくすんだ灰緑色です。赤紫の背景の上では緑がかって、緑の背景の上では赤紫がかって見えます。周囲の色の反対方向へ、色の見えがずれる現象です。",
+    art: buildColorContrast,
+  },
+  {
+    id: "watercolor",
+    title: "水彩錯視",
+    sub: "Watercolor Illusion",
+    explain:
+      "図形の内側は純粋な白です。濃い紫の輪郭線の内側に細いオレンジの縁取りを添えるだけで、囲まれた領域全体がうっすらオレンジ色に塗られているように見えます。縁の色が面に広がって見える、ピンナらが報告した錯視です。",
+    art: buildWatercolor,
+  },
+  {
+    id: "color-constancy",
+    title: "色の恒常性",
+    sub: "Color Constancy",
+    explain:
+      "このイチゴの実の部分には、赤い画素は1つもありません。すべて灰色〜青緑色です。画面全体に青緑の光がかかっていると脳が解釈し、「照明の色を差し引いた本来の色」として赤を復元するため、赤く見えます。",
+    art: buildColorConstancy,
+  },
+  {
+    id: "varin",
+    title: "ヴァリン図形",
+    sub: "Varin Figure",
+    explain:
+      "4つの円の切り欠きだけが水色なのに、中央に半透明の水色の正方形が浮かんで見えます。カニッツァの四角形と同じ主観的輪郭に、色の拡散が加わったもので、ガラス板を通したような透明感まで知覚されます。",
+    art: buildVarin,
+  },
+  {
+    id: "abutting",
+    title: "アバッティング格子",
+    sub: "Abutting Grating",
+    explain:
+      "上下の縦縞は、半周期だけ横にずらして突き合わせてあります。すると、何も描かれていないつなぎ目に、はっきりした横線（輪郭）が見えます。線の端点の並びを、脳が「手前にある輪郭」として補完するためです。",
+    art: buildAbutting,
+  },
+  {
+    id: "amodal",
+    title: "アモーダル補完",
+    sub: "Amodal Completion",
+    explain:
+      "左の図は「四角の後ろに丸が隠れている」ように見えます。しかし実際に描かれているのは、右に示したパックマン形だけかもしれません。隠れた部分を脳が自動的に補って「完全な丸」として知覚する働きを、アモーダル補完と呼びます。",
+    art: buildAmodal,
+  },
+  {
+    id: "blind-spot",
+    title: "盲点の充填",
+    sub: "Blind Spot Filling-in",
+    explain:
+      "右目を閉じて、左目で右の＋を見つめてください。そのまま顔を画面にゆっくり近づけたり離したりすると、ある距離で左の黒い点が消え、背景の模様で埋められます。視神経の出口（盲点）には視細胞がなく、脳が周囲の模様で穴埋めしていることがわかります。",
+    art: buildBlindSpot,
+  },
+  {
+    id: "shape-from-shading",
+    title: "凹凸の反転",
+    sub: "Shape from Shading",
+    explain:
+      "上が明るい円は出っぱって、下が明るい円はへこんで見えます。グラデーションの向きが違うだけで、すべて同じ平面の円です。脳が「光は上から当たる」と仮定して陰影から立体を復元するためで、画面を上下逆にすると凹凸も反転します。",
+    art: buildShapeFromShading,
+  },
+  {
+    id: "wallpaper-stereogram",
+    title: "壁紙ステレオグラム",
+    sub: "Wallpaper Stereogram",
+    explain:
+      "目の力を抜いて、画面の奥を見るように左右の目の視線をずらしてください（平行法）。隣どうしの模様が重なると、間隔の狭い真ん中の段だけが手前に浮き上がって見えます。左右の目に入る像のずれから、脳が奥行きを作り出します。",
+    art: buildWallpaperStereogram,
+  },
+  {
+    id: "impossible-cube",
+    title: "不可能の立方体",
+    sub: "Impossible Cube",
+    explain:
+      "一見ふつうの立方体の枠ですが、奥にあるはずの縦の柱が、手前の梁の前を横切っています。エッシャーの版画『物見の塔』にも登場する不可能図形で、局所的にはどの接合も自然に見えるのに、全体としては成立しません。",
+    art: buildImpossibleCube,
+  },
+  {
+    id: "machs-book",
+    title: "マッハの本",
+    sub: "Mach's Book",
+    explain:
+      "開いた本（または折り立てたカード）の線画です。背表紙がこちらへ突き出して見えたり、奥へへこんで見えたり、2通りの解釈が切り替わります。ネッカーの立方体と同じ、奥行きの手がかりが足りない多義図形です。",
+    art: buildMachsBook,
+  },
+  {
+    id: "stereokinetic",
+    title: "ステレオキネティック効果",
+    sub: "Stereokinetic Effect",
+    explain:
+      "中心をずらして入れ子にした、ただの平らな円が回っているだけです。見つめていると、奥へ深く沈み込むトンネル（または突き出た円すい）の立体に見えてきます。回転による各円のずれ方を、脳が奥行きとして解釈するためです。",
+    art: buildStereokinetic,
+  },
+  {
+    id: "ames-window",
+    title: "エイムズの窓",
+    sub: "Ames Window",
+    explain:
+      "台形の窓がぐるぐると一方向に回転し続けています。しかし見ていると、回転ではなく、左右に往復して揺れているように見える瞬間があります。台形を「遠近法で見た長方形の窓」と解釈してしまうため、向きの反転を見落とすのです。",
+    art: buildAmesWindow,
+  },
+  {
+    id: "stepping-feet",
+    title: "ステッピングフィート錯視",
+    sub: "Stepping Feet Illusion",
+    explain:
+      "黄色と青の棒は、ぴったり同じ速さで滑らかに動いています。縞模様の上では、2本が交互に止まったり進んだり、足踏みするように見えます。背景との明暗差が大きい瞬間ほど速く見えるためで、棒の輪郭がぼやけると錯視は消えます。",
+    art: buildSteppingFeet,
+  },
+  {
+    id: "phi",
+    title: "仮現運動",
+    sub: "Apparent Motion (Phi)",
+    explain:
+      "2つの円が交互に点滅しているだけで、何も移動していません。それでも、1つの円が左右に行き来しているように見えます。映画やアニメーション、駅の電光掲示板が動いて見えるのも、この仮現運動のおかげです。",
+    art: buildPhi,
+  },
+  {
+    id: "wagon-wheel",
+    title: "ワゴンホイール効果",
+    sub: "Wagon-Wheel Effect",
+    explain:
+      "車輪は一定の向きにコマ送りで回転しています。しかし、1コマの回転角がスポークの間隔に近いため、逆向きにゆっくり回って見えます。映画の馬車の車輪が逆回転して見える現象と同じ仕組みです。",
+    art: buildWagonWheel,
+  },
+  {
+    id: "barber-pole",
+    title: "バーバーポール錯視",
+    sub: "Barberpole Illusion",
+    explain:
+      "縞模様は、どちらの窓の中でも真横に動いています。それなのに、縦長の窓では縞が上へ、横長の窓では横へ動いて見えます。窓の長い方向に沿った動きとして解釈されるためで、理髪店の回る看板が上へ昇って見えるのと同じ現象です。",
+    art: buildBarberPole,
+  },
+  {
+    id: "enigma",
+    title: "エニグマ錯視",
+    sub: "Enigma Illusion",
+    explain:
+      "完全に静止した図形です。中心を見つめていると、紫色のリングの中を、微粒子の流れがぐるぐると高速で走り抜けるように見えます。レヴィアンによる作品『エニグマ』で知られ、細かな目の動きが関与すると考えられています。",
+    art: buildEnigma,
+  },
+  {
+    id: "fraser-wilcox",
+    title: "フレーザー・ウィルコックス錯視",
+    sub: "Fraser-Wilcox Illusion",
+    explain:
+      "静止画ですが、円盤がゆっくり回転して見えます（見えない人もいます）。暗→明の繰り返しでできた扇形の並びが、周辺視野で一方向の動きの信号を生むためです。「蛇の回転」錯視の原型となった古典的な錯視です。",
+    art: buildFraserWilcox,
+  },
+  {
+    id: "flash-lag",
+    title: "フラッシュラグ効果",
+    sub: "Flash-Lag Effect",
+    explain:
+      "白い点は、回転する棒の延長線上ぴったりの位置で点滅しています。それでも、点が光った瞬間、棒はすでに少し先へ進んでいるように見えます。動くものの位置を脳が先読みして処理しているため、と考えられています。",
+    art: buildFlashLag,
+  },
+  {
+    id: "sfm-cylinder",
+    title: "曖昧な回転円筒",
+    sub: "Structure from Motion",
+    explain:
+      "点が左右に往復しているだけの平面的な動きですが、見つめていると透明な円筒が回転しているように見えます。さらに、回転の向きは右回りにも左回りにも見え、ときどき反転します。動きから立体を復元する脳の働き（運動からの構造）を示します。",
+    art: buildSfmCylinder,
+  },
+  {
+    id: "starburst",
+    title: "きらめくスターバースト",
+    sub: "Scintillating Starburst",
+    explain:
+      "描かれているのは、淡い灰色の星形の輪だけです。中心のまわりに、明るい光線が放射状に走ってきらめいて見えます。星形の頂点の並びを、脳が「光線」としてつなぎ合わせるために生じる、2021年発表の新しい錯視です。",
+    art: buildStarburst,
+  },
+  {
+    id: "ninio",
+    title: "ニニオの消失錯視",
+    sub: "Ninio's Extinction Illusion",
+    explain:
+      "この図には黒い点が12個ありますが、一度に全部を見ることはできません。視線を向けた点ははっきり見えるのに、周辺の点は格子に飲み込まれて消えてしまいます。ヘルマン格子と同じ仕組みが、より劇的に現れた錯視です。",
+    art: buildNinio,
+  },
+  {
+    id: "honeycomb",
+    title: "ハニカム錯視",
+    sub: "Honeycomb Illusion",
+    explain:
+      "すべての六角形の角には、小さなヒゲ（とげ）が付いています。しかし、ヒゲが見えるのは視線の周りだけで、少し離れた場所のヒゲは存在しないかのように消えます。視野の周辺では細部が大胆に省略されていることを実感できる錯視です。",
+    art: buildHoneycomb,
+  },
+  {
+    id: "tilt-aftereffect",
+    title: "傾き残効",
+    sub: "Tilt Aftereffect",
+    explain:
+      "まず左の傾いた縞の中心を30秒ほど見つめ、そのあと右の縞に視線を移してください。完全に垂直な右の縞が、逆方向に傾いて見えます。傾きに反応する神経細胞が疲れて、バランスが崩れるためです。",
+    art: buildTiltAftereffect,
+  },
+  {
+    id: "stroop",
+    title: "ストループ効果",
+    sub: "Stroop Effect",
+    explain:
+      "文字の「意味」ではなく「インクの色」を、左上から順にできるだけ速く声に出してみてください。色名と文字の色が食い違っていると、読みが急に遅くなり、つっかえます。文字を読む処理が自動的に働いて、色の判断と衝突するためです。",
+    art: buildStroop,
+  },
+  {
+    id: "thatcher",
+    title: "サッチャー錯視",
+    sub: "Thatcher Effect",
+    explain:
+      "逆さまの2つの顔は、どちらも普通の表情に見えます。しかし右の顔は、目と口だけが上下反転しています。画面を逆さにして確かめてください（恐ろしい顔になっています）。顔のパーツの向きの異常は、顔が逆さだと検出しにくいのです。",
+    art: buildThatcher,
+  },
+  {
+    id: "glass-pattern",
+    title: "ガラス・パターン",
+    sub: "Glass Pattern",
+    explain:
+      "ランダムにまいた点と、それ全体を少しだけ回転させたコピーを重ねただけの図です。それなのに、渦を巻くような同心円状の流れがはっきり見えます。点のペアの向きを、脳が大域的な構造へと統合するためです。",
+    art: buildGlassPattern,
+  },
+  {
+    id: "giovanelli",
+    title: "ジョバネッリ錯視",
+    sub: "Giovanelli Illusion",
+    explain:
+      "黒い点は、完全に一直線上に等間隔で並んでいます。点を囲む円がジグザグにずれていると、点まで上下にうねって並んでいるように見えます。点の位置が、囲んでいる円の枠組みに引きずられて知覚されるためです。",
+    art: buildGiovanelli,
+  },
+  {
+    id: "numerosity",
+    title: "個数の錯視",
+    sub: "Numerosity Illusion",
+    explain:
+      "左右の点はどちらもぴったり60個です。規則的に並んだ側（右）のほうが、かたまって散らばった側（左）より多く見えます。個数の見積もりが、点の密集のしかたに影響されることを示します。",
+    art: buildNumerosity,
+  },
+  {
+    id: "missing-square",
+    title: "消える正方形",
+    sub: "Missing Square Paradox",
+    explain:
+      "同じ4つのピースを並べ替えただけなのに、下の三角形には1マスの穴が空いています。実は、どちらの「斜辺」もまっすぐではなく、ごくわずかに折れ曲がっています。その差がちょうど1マス分の面積になるのですが、目はその折れを検出できません。",
+    art: buildMissingSquare,
+  },
 ];
 
 function buildCafeWall() {
@@ -475,9 +907,13 @@ function svgLine(a, b, c, d, color, w) {
 function buildPonzo() {
   const W = 300, H = 300;
   let p = "";
-  // 収束するレール
+  // 収束するレール（左: x = 55 + (290-y)/265*75 相当）
+  const lx = (y) => 55 + ((H - 10 - y) / 265) * 75;
+  const rx = (y) => W - lx(y);
   p += svgLine(55, H - 10, 130, 25, "#333", 4);
   p += svgLine(W - 55, H - 10, W - 130, 25, "#333", 4);
+  // 枕木（奥行きの手がかり）
+  [275, 232, 192, 156, 124, 96, 50].forEach((y) => p += svgLine(lx(y), y, rx(y), y, "#9aa0aa", 2));
   // 同じ長さの2本の横線
   p += svgLine(95, 80, 205, 80, "#e53935", 8);
   p += svgLine(95, 250, 205, 250, "#e53935", 8);
@@ -564,11 +1000,15 @@ function buildWhite() {
 }
 
 function buildMach() {
-  const grays = [40, 70, 100, 130, 160, 190, 220];
-  const bands = grays
-    .map((g) => `<div style="background:rgb(${g},${g},${g})"></div>`)
-    .join("");
-  return `<div class="mach">${bands}</div>`;
+  // 平坦 → 直線的グラデーション → 平坦。折れ目に明るい/暗い帯が見える
+  return `<svg width="360" height="170" viewBox="0 0 360 170">
+    <defs><linearGradient id="machG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgb(50,50,50)"/><stop offset="1" stop-color="rgb(220,220,220)"/>
+    </linearGradient></defs>
+    <rect x="0" width="100" height="170" fill="rgb(50,50,50)"/>
+    <rect x="100" width="160" height="170" fill="url(#machG)"/>
+    <rect x="260" width="100" height="170" fill="rgb(220,220,220)"/>
+  </svg>`;
 }
 
 function buildNecker() {
@@ -1052,4 +1492,789 @@ function buildMotionAftereffect() {
   }
   const path = `<polyline points="${pts.join(" ")}" fill="none" stroke="#141414" stroke-width="11" stroke-linecap="round"/>`;
   return `<div class="spiral-ame"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="142" fill="#fff" stroke="#141414" stroke-width="2"/>${path}</svg></div>`;
+}
+
+function buildOppelKundt() {
+  const y = 100, h = 26;
+  let p = svgLine(20, y, 300, y, "#bbb", 1);
+  [20, 160].forEach((x) => (p += svgLine(x, y - h, x, y + h, "#141414", 4)));
+  for (let x = 160; x <= 300; x += 14) p += svgLine(x, y - h, x, y + h, "#141414", 4);
+  return `<svg width="320" height="200" viewBox="0 0 320 200">${p}</svg>`;
+}
+
+function buildMlFigure(x1, x2, y, lDir, rDir, dotX) {
+  // lDir/rDir: 1=外向きフィン, -1=内向きフィン
+  const d = 26, A = (32 * Math.PI) / 180, dx = d * Math.cos(A), dy = d * Math.sin(A);
+  let p = svgLine(x1, y, x2, y, "#141414", 3.5);
+  p += svgLine(x1, y, x1 - lDir * dx, y - dy, "#141414", 3.5) + svgLine(x1, y, x1 - lDir * dx, y + dy, "#141414", 3.5);
+  p += svgLine(x2, y, x2 + rDir * dx, y - dy, "#141414", 3.5) + svgLine(x2, y, x2 + rDir * dx, y + dy, "#141414", 3.5);
+  if (dotX != null) p += `<circle cx="${dotX}" cy="${y}" r="5" fill="#df3b26"/>`;
+  return p;
+}
+
+function buildJudd() {
+  // 両端の矢羽が同じ向き → 中点（赤）がずれて見える
+  let p = buildMlFigure(50, 290, 55, 1, -1, 170);
+  p += buildMlFigure(50, 290, 145, -1, 1, 170);
+  return `<svg width="340" height="200" viewBox="0 0 340 200">${p}</svg>`;
+}
+
+function buildBrentano() {
+  // <——>——< ：左半分は内向き同士、右半分は外向き同士（中点は170）
+  const y = 90, d = 26, A = (32 * Math.PI) / 180, dx = d * Math.cos(A), dy = d * Math.sin(A);
+  let p = svgLine(40, y, 300, y, "#141414", 3.5);
+  const fin = (x, dir) =>
+    svgLine(x, y, x + dir * dx, y - dy, "#141414", 3.5) + svgLine(x, y, x + dir * dx, y + dy, "#141414", 3.5);
+  // 左半分＝内向き同士（短く見える）、右半分＝外向き同士（長く見える）。中央のフィンは共有
+  p += fin(40, 1) + fin(170, -1) + fin(300, 1);
+  [40, 170, 300].forEach((x) => (p += `<circle cx="${x}" cy="${y + 38}" r="3" fill="#df3b26"/>`));
+  return `<svg width="340" height="180" viewBox="0 0 340 180">${p}</svg>`;
+}
+
+function buildBaldwin() {
+  const sq = (x, y, s) => `<rect x="${x - s / 2}" y="${y - s / 2}" width="${s}" height="${s}" fill="#141414"/>`;
+  let p = sq(70, 60, 76) + sq(270, 60, 76) + svgLine(108, 60, 232, 60, "#df3b26", 4);
+  p += sq(110, 170, 22) + sq(230, 170, 22) + svgLine(121, 170, 219, 170, "#df3b26", 4);
+  return `<svg width="340" height="240" viewBox="0 0 340 240">${p}</svg>`;
+}
+
+function buildCorridor() {
+  const W = 320, H = 280, vx = 160, vy = 110;
+  let p = `<rect width="${W}" height="${H}" fill="#efe9dc"/>`;
+  // 床・天井・壁の遠近線
+  const corner = [[0, 0], [W, 0], [0, H], [W, H], [0, H * 0.4], [W, H * 0.4], [0, H * 0.75], [W, H * 0.75]];
+  corner.forEach(([x, y]) => (p += svgLine(x, y, vx, vy, "#9aa0aa", 2)));
+  // 奥の壁
+  p += `<rect x="${vx - 34}" y="${vy - 26}" width="68" height="52" fill="#d8d2c4" stroke="#9aa0aa" stroke-width="2"/>`;
+  // 床の横線（奥行きの目盛り）
+  [262, 238, 210, 186, 168, 152, 140].forEach((y) => {
+    const t = (y - vy) / (H - vy);
+    p += svgLine(vx - 160 * t, y, vx + 160 * t, y, "#9aa0aa", 1.5);
+  });
+  // 同じ大きさの2本の柱
+  const bar = (x, yb) => `<rect x="${x - 11}" y="${yb - 64}" width="22" height="64" fill="#f3c10a" stroke="#141414" stroke-width="2.5"/>`;
+  p += bar(70, 262) + bar(196, 156);
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildLeaningTower() {
+  const tower = (tx) => {
+    let t = `<g transform="translate(${tx},230) rotate(-8)">`;
+    t += `<rect x="-26" y="-190" width="52" height="190" fill="#d2cab6" stroke="#141414" stroke-width="2.5"/>`;
+    for (let f = 0; f < 6; f++) {
+      t += svgLine(-26, -28 - f * 30, 26, -28 - f * 30, "#141414", 1.5);
+      for (let w = 0; w < 3; w++) t += `<rect x="${-19 + w * 15}" y="${-50 - f * 30}" width="8" height="14" fill="#6b6256"/>`;
+    }
+    t += `<rect x="-20" y="-208" width="40" height="18" fill="#df3b26" stroke="#141414" stroke-width="2"/>`;
+    return t + "</g>";
+  };
+  return `<svg width="340" height="250" viewBox="0 0 340 250">${tower(120)}${tower(250)}</svg>`;
+}
+
+function buildIrradiation() {
+  return `<svg width="340" height="190" viewBox="0 0 340 190">
+    <rect x="10" y="15" width="160" height="160" fill="#0c0c0c"/>
+    <rect x="55" y="60" width="70" height="70" fill="#fff"/>
+    <rect x="170" y="15" width="160" height="160" fill="#fff"/>
+    <rect x="215" y="60" width="70" height="70" fill="#0c0c0c"/>
+  </svg>`;
+}
+
+function buildMunsterberg() {
+  const t = 24, cols = 13, W = cols * t, rows = 7;
+  let p = `<rect width="${W}" height="${rows * t}" fill="#fff"/>`;
+  for (let r = 0; r < rows; r++) {
+    const off = (r % 2) * (t / 2);
+    for (let x = -t + off; x < W; x += t * 2) {
+      p += `<rect x="${x}" y="${r * t}" width="${t}" height="${t}" fill="#0c0c0c"/>`;
+    }
+  }
+  for (let r = 1; r < rows; r++) p += svgLine(0, r * t, W, r * t, "#0c0c0c", 2);
+  return `<svg width="${W}" height="${rows * t}" viewBox="0 0 ${W} ${rows * t}">${p}</svg>`;
+}
+
+function buildTiltContrast() {
+  const grating = (id, ang) => `
+    <pattern id="${id}" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(${ang})">
+      <rect width="14" height="14" fill="#fff"/><rect width="7" height="14" fill="#3a3a3a"/>
+    </pattern>`;
+  const unit = (cx, surroundAng) => `
+    <circle cx="${cx}" cy="120" r="92" fill="url(#tc${surroundAng})"/>
+    <circle cx="${cx}" cy="120" r="44" fill="url(#tc0)" stroke="#efe9dc" stroke-width="4"/>`;
+  return `<svg width="400" height="240" viewBox="0 0 400 240">
+    <defs>${grating("tc0", 0)}${grating("tc15", 15)}${grating("tc-15", -15)}</defs>
+    ${unit(105, 15)}${unit(295, -15)}
+  </svg>`;
+}
+
+function buildTwistedCord() {
+  const W = 340, H = 260, seg = 16;
+  let p = `<rect width="${W}" height="${H}" fill="#8c8c8c"/>`;
+  // 市松の背景
+  for (let y = 0; y < H; y += 20) for (let x = (y / 20) % 2 ? 20 : 0; x < W; x += 40)
+    p += `<rect x="${x}" y="${y}" width="20" height="20" fill="#a2a2a2"/>`;
+  // 水平なより糸（ねじれの向きを行ごとに交互へ）
+  [50, 105, 160, 215].forEach((y, row) => {
+    const tilt = row % 2 ? -28 : 28;
+    for (let x = 20, i = 0; x < W - 20; x += seg, i++) {
+      const col = i % 2 ? "#0c0c0c" : "#fff";
+      p += `<rect x="${x - 2}" y="${y - 5}" width="${seg + 4}" height="10" fill="${col}" transform="rotate(${tilt} ${x + seg / 2} ${y})"/>`;
+    }
+  });
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildTextTilt() {
+  const rows = ["ベスペスベスペスベスペス", "ペスベスペスベスペスベス"];
+  let t = "";
+  for (let r = 0; r < 6; r++) {
+    t += `<text x="170" y="${44 + r * 38}" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="26" letter-spacing="2" fill="#141414">${rows[r % 2]}</text>`;
+  }
+  return `<svg width="340" height="260" viewBox="0 0 340 260">${t}</svg>`;
+}
+
+function buildBourdon() {
+  // 2つの細長い三角形：左の縁は1本の直線 (x = 150 - 0.36*(y-130)) 上
+  const edge = (y) => 150 - 0.36 * (y - 130);
+  // 上下2つの細長い三角形。共有する左の縁は1本の直線
+  const up = `<polygon points="${edge(20)},20 ${edge(130)},130 ${edge(20) + 150},20" fill="#141414"/>`;
+  const dn = `<polygon points="${edge(130)},130 ${edge(240)},240 ${edge(240) + 150},240" fill="#141414"/>`;
+  return `<svg width="360" height="260" viewBox="0 0 360 260">${up}${dn}
+    <circle cx="${edge(20)}" cy="20" r="3" fill="#df3b26"/>
+    <circle cx="${edge(130)}" cy="130" r="3" fill="#df3b26"/>
+    <circle cx="${edge(240)}" cy="240" r="3" fill="#df3b26"/></svg>`;
+}
+
+function buildBulge() {
+  const t = 22, n = 14, W = n * t;
+  let p = `<rect width="${W}" height="${W}" fill="#fff"/>`;
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++)
+    if ((r + c) % 2 === 0) p += `<rect x="${c * t}" y="${r * t}" width="${t}" height="${t}" fill="#0c0c0c"/>`;
+  // 中央領域のマス角に小さな点（白マスには黒点、黒マスには白点）を4隅対称に
+  const dot = (x, y, fill) => `<rect x="${x - 2.5}" y="${y - 2.5}" width="5" height="5" fill="${fill}"/>`;
+  const cx = W / 2, cy = W / 2, R = t * 4.2;
+  for (let r = 1; r < n; r++) for (let c = 1; c < n; c++) {
+    const x = c * t, y = r * t;
+    const d = Math.hypot(x - cx, y - cy);
+    if (d < R && d > t * 0.8) {
+      const dark = (r + c) % 2 === 0;
+      const sx = x - cx > 0 ? -1 : 1, sy = y - cy > 0 ? -1 : 1;
+      p += dot(x + sx * 5, y + sy * 5, dark ? "#fff" : "#0c0c0c");
+    }
+  }
+  return `<svg width="${W}" height="${W}" viewBox="0 0 ${W} ${W}">${p}</svg>`;
+}
+
+function buildCurvatureBlindness() {
+  const W = 360, H = 290, amp = 11, period = 64;
+  let bg = `<rect width="${W}" height="${H / 3}" fill="#fff"/>` +
+    `<rect y="${H / 3}" width="${W}" height="${H / 3 + 1}" fill="#8c8c8c"/>` +
+    `<rect y="${(2 * H) / 3}" width="${W}" height="${H / 3}" fill="#0c0c0c"/>`;
+  let p = "";
+  for (let row = 0; row < 7; row++) {
+    const y0 = 24 + row * 40, phase = (row % 2) * (period / 2);
+    // 山谷で色が変わる線（錯視あり）と、山谷の途中で変わる線（対照）を交互に
+    const splitAtPeak = row % 2 === 0;
+    for (let x = 0; x < W; x += 4) {
+      const y = y0 + amp * Math.sin(((x + phase) / period) * 2 * Math.PI);
+      const ph = (((x + phase) / period) % 1 + 1) % 1;
+      const seg = splitAtPeak ? (ph < 0.25 || ph >= 0.75 ? 0 : 1) : (ph < 0.5 ? 0 : 1);
+      const col = seg === 0 ? "#e8e8e8" : "#3c3c3c";
+      p += `<rect x="${x}" y="${(y - 1.6).toFixed(1)}" width="4.4" height="3.2" fill="${col}"/>`;
+    }
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${bg}${p}</svg>`;
+}
+
+function buildCurvatureContrast() {
+  const arc = (cx, cy, r, a0, a1, col, w) => {
+    const P = (a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    const [x0, y0] = P(a0), [x1, y1] = P(a1);
+    return `<path d="M ${x0.toFixed(1)} ${y0.toFixed(1)} A ${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
+  };
+  const a = -Math.PI / 2;
+  let p = "";
+  // 左：強く曲がった弧に囲まれたターゲット
+  [-0.62, 0.62].forEach((dy) => (p += arc(95, 190 + dy * 130, 60, a - 0.95, a + 0.95, "#141414", 3.5)));
+  p += arc(95, 250, 120, a - 0.55, a + 0.55, "#df3b26", 5);
+  // 右：ほぼ平らな弧に囲まれたターゲット
+  [-0.62, 0.62].forEach((dy) => (p += arc(245, 460 + dy * 470, 340, a - 0.21, a + 0.21, "#141414", 3.5)));
+  p += arc(245, 250, 120, a - 0.55, a + 0.55, "#df3b26", 5);
+  return `<svg width="340" height="260" viewBox="0 0 340 260">${p}</svg>`;
+}
+
+function buildKoffkaRing() {
+  const panel = (x, split) => {
+    let s = `<g transform="translate(${x},0)">` +
+      `<rect width="150" height="220" fill="#3c3c3c"/><rect x="75" width="75" height="220" fill="#c8c8c8"/>`;
+    const ring = `fill="none" stroke="#8a8a8a" stroke-width="26"`;
+    if (!split) {
+      s += `<circle cx="75" cy="110" r="48" ${ring}/>`;
+    } else {
+      s += `<path d="M 75 ${110 - 48 - 9} A 57 57 0 0 0 75 ${110 + 48 + 9}" fill="none" stroke="#8a8a8a" stroke-width="26" transform="translate(-1,-12)" />`;
+      s += `<path d="M 75 ${110 - 48 - 9} A 57 57 0 0 1 75 ${110 + 48 + 9}" fill="none" stroke="#8a8a8a" stroke-width="26" transform="translate(1,12)" />`;
+    }
+    return s + "</g>";
+  };
+  return `<svg width="340" height="220" viewBox="0 0 340 220">${panel(10, false)}${panel(180, true)}</svg>`;
+}
+
+function buildBenary() {
+  const g = "#9a9a9a";
+  let p = `<rect width="340" height="230" fill="#fff"/>`;
+  // 黒い十字
+  p += `<rect x="120" y="20" width="80" height="190" fill="#0c0c0c"/>`;
+  p += `<rect x="30" y="85" width="280" height="80" fill="#0c0c0c"/>`;
+  // 十字の凹みに収まる三角形（十字に所属して見える）
+  p += `<polygon points="120,85 160,85 120,125" fill="${g}"/>`;
+  // 十字の外、白地の角に接する三角形
+  p += `<polygon points="310,85 270,85 310,45" fill="${g}"/>`;
+  return `<svg width="340" height="230" viewBox="0 0 340 230">${p}</svg>`;
+}
+
+function buildDungeon() {
+  const cell = 13, n = 9, target = "#8a8a8a";
+  const panel = (ox, bg, grid) => {
+    let s = `<rect x="${ox}" y="20" width="${n * cell * 1.55}" height="${n * cell * 1.55}" fill="${bg}"/>`;
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) {
+      if (r % 2 === 0 && c % 2 === 0) {
+        const isT = r >= 2 && r <= 6 && c >= 2 && c <= 6 && r % 4 === 2 && c % 4 === 2;
+        s += `<rect x="${ox + 10 + c * cell * 1.5}" y="${30 + r * cell * 1.5}" width="${cell}" height="${cell}" fill="${isT ? target : grid}"/>`;
+      }
+    }
+    return s;
+  };
+  return `<svg width="400" height="220" viewBox="0 0 400 220">${panel(10, "#0c0c0c", "#fff")}${panel(210, "#fff", "#0c0c0c")}</svg>`;
+}
+
+function buildTransparency() {
+  // 4分割の明るさが「乗算的」な関係 → 半透明の板に見える
+  return `<svg width="320" height="230" viewBox="0 0 320 230">
+    <rect x="30" y="15" width="130" height="200" fill="#e6e6e6"/>
+    <rect x="160" y="15" width="130" height="200" fill="#5a5a5a"/>
+    <rect x="80" y="65" width="80" height="100" fill="#9b9b9b"/>
+    <rect x="160" y="65" width="80" height="100" fill="#3d3d3d"/>
+  </svg>`;
+}
+
+function buildChevreul() {
+  const grays = [60, 92, 124, 156, 188, 220];
+  let p = "";
+  grays.forEach((g, i) => {
+    p += `<rect x="${i * 56}" width="56" height="180" fill="rgb(${g},${g},${g})"/>`;
+  });
+  return `<svg width="336" height="180" viewBox="0 0 336 180">${p}</svg>`;
+}
+
+function buildGradientContrast() {
+  return `<svg width="340" height="210" viewBox="0 0 340 210">
+    <defs><linearGradient id="gcBg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1c1c1c"/><stop offset="1" stop-color="#e8e8e8"/>
+    </linearGradient></defs>
+    <rect width="340" height="210" fill="url(#gcBg)"/>
+    <rect x="30" y="89" width="280" height="32" fill="#8a8a8a"/>
+  </svg>`;
+}
+
+function buildGlare() {
+  const panel = (ox, glow) => {
+    const id = glow ? "glareG" : "none";
+    let s = "";
+    const c = 90; // 中央白領域の一辺
+    if (glow) {
+      s += `<defs>
+        <linearGradient id="gl-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a9a9a"/><stop offset="1" stop-color="#fff"/></linearGradient>
+        <linearGradient id="gl-b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9a9a9a"/><stop offset="1" stop-color="#fff"/></linearGradient>
+        <linearGradient id="gl-l" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a9a9a"/><stop offset="1" stop-color="#fff"/></linearGradient>
+        <linearGradient id="gl-r" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#9a9a9a"/><stop offset="1" stop-color="#fff"/></linearGradient>
+      </defs>`;
+    }
+    const f = (dir) => (glow ? `url(#gl-${dir})` : "#9a9a9a");
+    const cx = ox + 75, edge = 30;
+    s += `<rect x="${ox}" y="30" width="150" height="150" fill="#fff"/>`;
+    s += `<rect x="${ox}" y="30" width="150" height="${edge + 30}" fill="${f("t")}"/>`;
+    s += `<rect x="${ox}" y="${180 - edge - 30}" width="150" height="${edge + 30}" fill="${f("b")}"/>`;
+    s += `<rect x="${ox}" y="30" width="${edge + 30}" height="150" fill="${f("l")}"/>`;
+    s += `<rect x="${ox + 150 - edge - 30}" y="30" width="${edge + 30}" height="150" fill="${f("r")}"/>`;
+    s += `<rect x="${cx - c / 2 + 15}" y="${105 - c / 2 + 15}" width="${c - 30}" height="${c - 30}" fill="#fff"/>`;
+    return s;
+  };
+  return `<svg width="360" height="210" viewBox="0 0 360 210">${panel(15, true)}${panel(195, false)}</svg>`;
+}
+
+function buildLiebmann() {
+  // 上：背景と図形がほぼ等輝度 → 輪郭が不安定／下：輝度差あり → くっきり
+  const star = (cy, fill) =>
+    `<polygon points="170,${cy - 38} 182,${cy - 12} 210,${cy - 10} 189,${cy + 8} 195,${cy + 36} 170,${cy + 21} 145,${cy + 36} 151,${cy + 8} 130,${cy - 10} 158,${cy - 12}" fill="${fill}"/>`;
+  return `<svg width="340" height="240" viewBox="0 0 340 240">
+    <rect width="340" height="120" fill="rgb(214,60,60)"/>
+    ${star(60, "rgb(70,138,70)")}
+    <rect y="120" width="340" height="120" fill="rgb(214,60,60)"/>
+    ${star(180, "rgb(28,56,28)")}
+  </svg>`;
+}
+
+function buildColorContrast() {
+  const chip = "rgb(150,150,110)";
+  return `<svg width="340" height="190" viewBox="0 0 340 190">
+    <rect width="170" height="190" fill="rgb(196,80,170)"/>
+    <rect x="170" width="170" height="190" fill="rgb(96,170,80)"/>
+    <rect x="55" y="65" width="60" height="60" fill="${chip}"/>
+    <rect x="225" y="65" width="60" height="60" fill="${chip}"/>
+  </svg>`;
+}
+
+function buildWatercolor() {
+  // うねった閉曲線：外側＝濃い紫、内側＝オレンジの縁取り。内部は純白
+  const wave = (r0) => {
+    const cx = 170, cy = 130, n = 120;
+    let d = "";
+    for (let i = 0; i <= n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      const r = r0 + 14 * Math.sin(a * 6);
+      d += (i ? "L" : "M") + (cx + r * Math.cos(a)).toFixed(1) + " " + (cy + r * 0.72 * Math.sin(a)).toFixed(1) + " ";
+    }
+    return d + "Z";
+  };
+  return `<svg width="340" height="260" viewBox="0 0 340 260">
+    <rect width="340" height="260" fill="#fff"/>
+    <path d="${wave(104)}" fill="none" stroke="#5a2a8c" stroke-width="4.5"/>
+    <path d="${wave(97)}" fill="none" stroke="#ff9a3c" stroke-width="4.5"/>
+  </svg>`;
+}
+
+function buildColorConstancy() {
+  // 全体をシアンの「照明」で覆い、実の画素は無彩色〜青緑のみにする
+  const berry = (x, y, s) => `
+    <g transform="translate(${x},${y}) scale(${s})">
+      <path d="M0 -20 C 22 -20 26 2 18 18 C 10 32 -10 32 -18 18 C -26 2 -22 -20 0 -20 Z" fill="rgb(126,126,126)"/>
+      <circle cx="-7" cy="-2" r="1.8" fill="rgb(96,96,96)"/><circle cx="6" cy="4" r="1.8" fill="rgb(96,96,96)"/>
+      <circle cx="0" cy="12" r="1.8" fill="rgb(96,96,96)"/><circle cx="9" cy="-8" r="1.8" fill="rgb(96,96,96)"/>
+      <path d="M-12 -18 L0 -26 L12 -18 L6 -14 L-6 -14 Z" fill="rgb(40,150,130)"/>
+    </g>`;
+  return `<svg width="340" height="240" viewBox="0 0 340 240">
+    <rect width="340" height="240" fill="rgb(70,180,190)"/>
+    <rect x="20" y="150" width="300" height="70" rx="8" fill="rgb(90,200,205)"/>
+    ${berry(100, 90, 1.5)}${berry(200, 70, 1.2)}${berry(255, 120, 1.35)}${berry(150, 175, 1.3)}${berry(240, 185, 1.1)}
+  </svg>`;
+}
+
+function buildVarin() {
+  const r = 36, off = 70, cx = 150, cy = 130;
+  const pac = (x, y, phi) => {
+    const a0 = ((phi - 45) * Math.PI) / 180, a1 = ((phi + 45) * Math.PI) / 180;
+    const pt = (a) => `${(x + r * Math.cos(a)).toFixed(1)} ${(y + r * Math.sin(a)).toFixed(1)}`;
+    return `<circle cx="${x}" cy="${y}" r="${r}" fill="#141414"/>` +
+      `<path d="M ${x} ${y} L ${pt(a0)} A ${r} ${r} 0 0 1 ${pt(a1)} Z" fill="#3bb3e6"/>`;
+  };
+  return `<svg width="300" height="260" viewBox="0 0 300 260">
+    ${pac(cx - off, cy - off, 45)}${pac(cx + off, cy - off, 135)}
+    ${pac(cx + off, cy + off, 225)}${pac(cx - off, cy + off, 315)}
+  </svg>`;
+}
+
+function buildAbutting() {
+  const W = 340, H = 240, pw = 16;
+  let p = `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  for (let x = 8; x < W - 8; x += pw) {
+    p += svgLine(x, 20, x, H / 2, "#141414", 3);
+    p += svgLine(x + pw / 2, H / 2, x + pw / 2, H - 20, "#141414", 3);
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildAmodal() {
+  // 左：四角の後ろに「丸」が見える／右：実際に描かれているのは左図の見えている部分（半円）だけ
+  return `<svg width="360" height="220" viewBox="0 0 360 220">
+    <circle cx="95" cy="110" r="55" fill="#df3b26"/>
+    <rect x="95" y="40" width="90" height="140" fill="#1f4fb8"/>
+    <path d="M 285 55 A 55 55 0 0 0 285 165 Z" fill="#df3b26"/>
+  </svg>`;
+}
+
+function buildBlindSpot() {
+  let dots = "";
+  for (let i = 0; i < 90; i++) {
+    const x = (i * 37) % 340, y = ((i * 61) % 200) + 10;
+    dots += `<circle cx="${x + 10}" cy="${y}" r="2.2" fill="#b9b2a4"/>`;
+  }
+  return `<svg width="360" height="220" viewBox="0 0 360 220">
+    <rect width="360" height="220" fill="#efe9dc"/>${dots}
+    <circle cx="80" cy="110" r="13" fill="#141414"/>
+    <path d="M 270 98 v 24 M 258 110 h 24" stroke="#df3b26" stroke-width="5"/>
+  </svg>`;
+}
+
+function buildShapeFromShading() {
+  let p = `<defs>
+    <radialGradient id="sfsUp" cx="0.5" cy="0.3" r="0.75"><stop offset="0" stop-color="#e9e9e9"/><stop offset="1" stop-color="#4a4a4a"/></radialGradient>
+    <radialGradient id="sfsDn" cx="0.5" cy="0.7" r="0.75"><stop offset="0" stop-color="#e9e9e9"/><stop offset="1" stop-color="#4a4a4a"/></radialGradient>
+  </defs><rect width="320" height="320" fill="#8a8a8a"/>`;
+  for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) {
+    const dent = r === 2 ? (c % 2 === 0) : false; // 真ん中の行に「へこみ」を混ぜる
+    p += `<circle cx="${40 + c * 60}" cy="${40 + r * 60}" r="22" fill="url(#${dent ? "sfsDn" : "sfsUp"})"/>`;
+  }
+  return `<svg width="320" height="320" viewBox="0 0 320 320">${p}</svg>`;
+}
+
+function buildWallpaperStereogram() {
+  const W = 360, H = 280;
+  let p = `<rect width="${W}" height="${H}" fill="#141a2c"/>`;
+  const shapes = ["#f3c10a", "#3bb3e6", "#df6a3b", "#7fd63b"];
+  for (let row = 0; row < 6; row++) {
+    const period = row === 2 || row === 3 ? 50 : 56; // 中央2段だけ周期を狭く＝手前に浮く
+    const y = 30 + row * 42;
+    for (let x = 14; x < W - 10; x += period) {
+      const col = shapes[row % 4];
+      p += row % 2 === 0
+        ? `<circle cx="${x}" cy="${y}" r="11" fill="${col}"/>`
+        : `<rect x="${x - 9}" y="${y - 9}" width="18" height="18" rx="3" fill="${col}" transform="rotate(45 ${x} ${y})"/>`;
+    }
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildImpossibleCube() {
+  // 立方体の枠（梁）。奥の縦柱が手前の横梁の前を1か所だけ横切る
+  const t = 14, F = [70, 100, 230, 260], B = [130, 45, 290, 205]; // [x0,y0,x1,y1] 前面/背面の枠外周
+  const bar = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#d2cab6" stroke="#141414" stroke-width="2.5"/>`;
+  const frame = (q) =>
+    bar(q[0], q[1], q[2] - q[0], t) + bar(q[0], q[3] - t, q[2] - q[0], t) +
+    bar(q[0], q[1], t, q[3] - q[1]) + bar(q[2] - t, q[1], t, q[3] - q[1]);
+  const beam = (x0, y0, x1, y1) => {
+    const a = Math.atan2(y1 - y0, x1 - x0), L = Math.hypot(x1 - x0, y1 - y0);
+    return `<g transform="translate(${x0},${y0}) rotate(${(a * 180) / Math.PI})"><rect x="0" y="${-t / 2}" width="${L}" height="${t}" fill="#d2cab6" stroke="#141414" stroke-width="2.5"/></g>`;
+  };
+  let p = frame(B); // 背面の枠
+  // 前後をつなぐ4本の斜め梁
+  p += beam(F[0] + t / 2, F[1] + t / 2, B[0] + t / 2, B[1] + t / 2);
+  p += beam(F[2] - t / 2, F[1] + t / 2, B[2] - t / 2, B[1] + t / 2);
+  p += beam(F[0] + t / 2, F[3] - t / 2, B[0] + t / 2, B[3] - t / 2);
+  p += beam(F[2] - t / 2, F[3] - t / 2, B[2] - t / 2, B[3] - t / 2);
+  p += frame(F); // 前面の枠
+  // 不可能ポイント：背面の右の縦柱を、前面の上の横梁の上から描き直す
+  p += bar(B[2] - t, B[1], t, B[3] - B[1]);
+  return `<svg width="340" height="300" viewBox="0 0 340 300">${p}</svg>`;
+}
+
+function buildMachsBook() {
+  const ink = "#141414", w = 3;
+  let p = "";
+  // 開いた本：背の折り目が手前にも奥にも見える
+  const spineT = [170, 40], spineB = [170, 190];
+  const lT = [70, 75], lB = [70, 225], rT = [270, 75], rB = [270, 225];
+  [[lT, lB], [rT, rB], [spineT, spineB], [lT, spineT], [rT, spineT], [lB, spineB], [rB, spineB]].forEach(
+    ([a, b]) => (p += svgLine(a[0], a[1], b[0], b[1], ink, w))
+  );
+  return `<svg width="340" height="260" viewBox="0 0 340 260">${p}</svg>`;
+}
+
+function buildStereokinetic() {
+  let c = "";
+  const N = 7;
+  for (let i = 0; i < N; i++) {
+    const r = 120 - i * 16, off = i * 9;
+    c += `<circle cx="${150 + off * 0.5}" cy="${150 - off * 0.4}" r="${r}" fill="${i % 2 ? "#1f2a44" : "#e8e2d4"}"/>`;
+  }
+  return `<div class="stereokin"><svg width="300" height="300" viewBox="0 0 300 300"><circle cx="150" cy="150" r="146" fill="#1f2a44"/>${c}</svg></div>`;
+}
+
+function buildAmesWindow() {
+  // 台形の「窓」を3D回転させ続ける（CSS rotateY）
+  return `
+    <div class="ames">
+      <div class="ames-spin">
+        <svg width="220" height="240" viewBox="0 0 220 240">
+          <polygon points="20,40 200,10 200,230 20,200" fill="#d2cab6" stroke="#141414" stroke-width="3"/>
+          <polygon points="48,62 96,55 96,188 48,180" fill="#fff" stroke="#141414" stroke-width="2.5"/>
+          <polygon points="124,51 172,44 172,196 124,190" fill="#fff" stroke="#141414" stroke-width="2.5"/>
+        </svg>
+      </div>
+    </div>`;
+}
+
+function buildSteppingFeet() {
+  let stripes = "";
+  for (let i = 0; i < 22; i++) stripes += `<div class="${i % 2 ? "w" : "k"}"></div>`;
+  return `
+    <div class="stepfeet">
+      <div class="bg">${stripes}</div>
+      <div class="bar yellow"></div>
+      <div class="bar blue"></div>
+    </div>`;
+}
+
+function buildPhi() {
+  return `
+    <div class="phi">
+      <span class="a"></span>
+      <span class="b"></span>
+    </div>`;
+}
+
+function buildWagonWheel() {
+  let sp = "";
+  for (let i = 0; i < 12; i++) sp += `<line x1="110" y1="110" x2="110" y2="14" stroke="#141414" stroke-width="7" transform="rotate(${i * 30} 110 110)"/>`;
+  return `
+    <div class="wagon">
+      <svg width="220" height="220" viewBox="0 0 220 220">
+        <circle cx="110" cy="110" r="100" fill="#fff" stroke="#141414" stroke-width="8"/>
+        ${sp}
+        <circle cx="110" cy="110" r="16" fill="#141414"/>
+      </svg>
+    </div>`;
+}
+
+function buildBarberPole() {
+  const stripes = `<div class="stripes"></div>`;
+  return `
+    <div class="barber">
+      <div class="win v">${stripes}</div>
+      <div class="win h">${stripes}</div>
+    </div>`;
+}
+
+function buildEnigma() {
+  const cx = 150, cy = 150;
+  let p = `<circle cx="${cx}" cy="${cy}" r="146" fill="#fff"/>`;
+  for (let i = 0; i < 90; i++) {
+    const a = (i / 90) * 360;
+    p += `<rect x="${cx - 1.6}" y="${cy - 146}" width="3.2" height="140" fill="#141414" transform="rotate(${a} ${cx} ${cy})"/>`;
+  }
+  [52, 84, 116].forEach((r) => {
+    p += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#b9a6e0" stroke-width="15"/>`;
+  });
+  p += `<circle cx="${cx}" cy="${cy}" r="6" fill="#141414"/>`;
+  return `<svg width="300" height="300" viewBox="0 0 300 300">${p}</svg>`;
+}
+
+function buildFraserWilcox() {
+  const cx = 160, cy = 160, shades = ["#0c0c0c", "#5a5a5a", "#ababab", "#f4f4f4"];
+  let p = `<circle cx="${cx}" cy="${cy}" r="150" fill="#8a8a8a"/>`;
+  const N = 16;
+  for (let i = 0; i < N; i++) {
+    for (let k = 0; k < 4; k++) {
+      const a0 = ((i + k / 4) / N) * 2 * Math.PI, a1 = ((i + (k + 1) / 4) / N) * 2 * Math.PI;
+      const pt = (a, r) => `${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a)).toFixed(1)}`;
+      p += `<path d="M ${pt(a0, 40)} L ${pt(a0, 145)} A 145 145 0 0 1 ${pt(a1, 145)} L ${pt(a1, 40)} A 40 40 0 0 0 ${pt(a0, 40)} Z" fill="${shades[k]}"/>`;
+    }
+  }
+  p += `<circle cx="${cx}" cy="${cy}" r="40" fill="#8a8a8a"/>`;
+  return `<svg width="320" height="320" viewBox="0 0 320 320">${p}</svg>`;
+}
+
+function buildFlashLag() {
+  return `
+    <div class="flashlag">
+      <svg width="300" height="300" viewBox="0 0 300 300">
+        <circle cx="150" cy="150" r="146" fill="#101626"/>
+        <g class="fl-bar">
+          <rect x="42" y="146" width="216" height="8" rx="4" fill="#3bb3e6"/>
+        </g>
+        <circle class="fl-dot" cx="282" cy="150" r="7" fill="#fff"/>
+        <circle cx="150" cy="150" r="5" fill="#fff"/>
+      </svg>
+    </div>`;
+}
+
+function buildSfmCylinder() {
+  let dots = "";
+  for (let i = 0; i < 28; i++) {
+    const top = 8 + ((i * 53) % 200);
+    const dur = 2.6, delay = -(((i * 0.83) % dur)).toFixed(2);
+    dots += `<span style="top:${top}px;animation-delay:${delay}s"></span>`;
+  }
+  return `<div class="sfm">${dots}</div>`;
+}
+
+function buildStarburst() {
+  const cx = 160, cy = 160;
+  const ring = (R, rot, col, w) => {
+    const n = 7;
+    let d = "";
+    for (let i = 0; i <= n * 2; i++) {
+      const a = ((i / (n * 2)) * 2 * Math.PI) + rot;
+      const r = i % 2 === 0 ? R : R * 0.82;
+      d += (i ? "L" : "M") + (cx + r * Math.cos(a)).toFixed(1) + " " + (cy + r * Math.sin(a)).toFixed(1) + " ";
+    }
+    return `<path d="${d}Z" fill="none" stroke="${col}" stroke-width="${w}" stroke-linejoin="round"/>`;
+  };
+  let p = `<rect width="320" height="320" fill="#fff"/>`;
+  [58, 96, 134].forEach((R) => {
+    p += ring(R, 0, "#bfbfbf", 7);
+    p += ring(R, 0, "#7a7a7a", 2.5);
+  });
+  return `<svg width="320" height="320" viewBox="0 0 320 320">${p}</svg>`;
+}
+
+function buildNinio() {
+  const W = 340, step = 28;
+  let p = `<rect width="${W}" height="${W}" fill="#fff"/>`;
+  // 45度傾けた灰色の格子
+  for (let k = -W; k < W * 2; k += step) {
+    p += svgLine(k, 0, k + W, W, "#9a9a9a", 2.2);
+    p += svgLine(k, W, k + W, 0, "#9a9a9a", 2.2);
+  }
+  // 交点のうち12か所に白いハロー＋黒点
+  const spots = [[2, 2], [6, 2], [10, 2], [4, 4], [8, 4], [2, 6], [6, 6], [10, 6], [4, 8], [8, 8], [2, 10], [10, 10]];
+  spots.forEach(([gx, gy]) => {
+    const x = (gx * step) / 2 + step / 2, y = (gy * step) / 2 + step / 2;
+    p += `<circle cx="${x}" cy="${y}" r="9" fill="#fff"/><circle cx="${x}" cy="${y}" r="4.6" fill="#0c0c0c"/>`;
+  });
+  return `<svg width="${W}" height="${W}" viewBox="0 0 ${W} ${W}">${p}</svg>`;
+}
+
+function buildHoneycomb() {
+  const W = 360, H = 320, s = 30;
+  let lines = "", barbs = "";
+  const h = s * Math.sin(Math.PI / 3);
+  const seen = new Set(); // 共有頂点にヒゲを重複して描かない
+  for (let row = -1; row < H / h + 1; row++) {
+    for (let col = -1; col < W / (s * 1.5) + 1; col++) {
+      const cx = col * s * 1.5, cy = row * 2 * h + (col % 2 ? h : 0);
+      let pts = [];
+      for (let i = 0; i < 6; i++) {
+        const a = (Math.PI / 3) * i;
+        pts.push([cx + s * Math.cos(a), cy + s * Math.sin(a)]);
+      }
+      for (let i = 0; i < 6; i++) {
+        const a = pts[i], b = pts[(i + 1) % 6];
+        lines += svgLine(a[0].toFixed(1), a[1].toFixed(1), b[0].toFixed(1), b[1].toFixed(1), "#0c0c0c", 2);
+      }
+      // 各頂点に小さなヒゲを1組だけ（辺と重ならない向きに2本）
+      pts.forEach(([vx, vy]) => {
+        if (vx < -5 || vx > W + 5 || vy < -5 || vy > H + 5) return;
+        const key = Math.round(vx) + "," + Math.round(vy);
+        if (seen.has(key)) return;
+        seen.add(key);
+        const a = Math.atan2(vy - cy, vx - cx);
+        [-0.55, 0.55].forEach((da) => {
+          barbs += svgLine(vx.toFixed(1), vy.toFixed(1),
+            (vx + 6 * Math.cos(a + da)).toFixed(1), (vy + 6 * Math.sin(a + da)).toFixed(1), "#0c0c0c", 1.8);
+        });
+      });
+    }
+  }
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="#fff"/>${lines}${barbs}</svg>`;
+}
+
+function buildTiltAftereffect() {
+  const grating = (id, ang) => `
+    <pattern id="${id}" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(${ang})">
+      <rect width="16" height="16" fill="#fff"/><rect width="8" height="16" fill="#2a2a2a"/>
+    </pattern>`;
+  return `<svg width="380" height="220" viewBox="0 0 380 220">
+    <defs>${grating("taeL", -15)}${grating("taeR", 0)}</defs>
+    <circle cx="100" cy="110" r="86" fill="url(#taeL)"/>
+    <circle cx="290" cy="110" r="86" fill="url(#taeR)"/>
+    <circle cx="100" cy="110" r="4.5" fill="#df3b26"/>
+    <circle cx="290" cy="110" r="4.5" fill="#df3b26"/>
+  </svg>`;
+}
+
+function buildStroop() {
+  const words = [
+    ["赤", "#1f4fb8"], ["青", "#f3c10a"], ["黄", "#2e9e4f"], ["緑", "#df3b26"],
+    ["青", "#df3b26"], ["緑", "#1f4fb8"], ["赤", "#2e9e4f"], ["黄", "#df3b26"],
+    ["緑", "#f3c10a"], ["赤", "#1f4fb8"], ["黄", "#2e9e4f"], ["青", "#f3c10a"],
+  ];
+  let t = "";
+  words.forEach(([w, c], i) => {
+    const x = 70 + (i % 4) * 70, y = 70 + Math.floor(i / 4) * 72;
+    t += `<text x="${x}" y="${y}" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="44" fill="${c}">${w}</text>`;
+  });
+  return `<svg width="350" height="250" viewBox="0 0 350 250">${t}</svg>`;
+}
+
+function buildThatcher() {
+  // 顔は原点中心・正立で定義し、全体を180度回転して表示する
+  const face = (x, thatcherized) => {
+    const eye = (ex) => {
+      const e = `<ellipse cx="${ex}" cy="-22" rx="14" ry="9" fill="#fff" stroke="#141414" stroke-width="2.5"/>
+        <circle cx="${ex}" cy="-19" r="4.5" fill="#141414"/>
+        <path d="M ${ex - 15} -38 Q ${ex} -48 ${ex + 15} -38" fill="none" stroke="#141414" stroke-width="3"/>`;
+      return thatcherized ? `<g transform="rotate(180 ${ex} -26)">${e}</g>` : e;
+    };
+    const mouthShape = `<path d="M -30 24 Q 0 56 30 24 Q 0 38 -30 24 Z" fill="#b03030" stroke="#141414" stroke-width="2.5"/>`;
+    const mouth = thatcherized ? `<g transform="rotate(180 0 33)">${mouthShape}</g>` : mouthShape;
+    return `
+      <g transform="translate(${x},122) rotate(180)">
+        <circle cx="0" cy="0" r="80" fill="#f3d9a4" stroke="#141414" stroke-width="3"/>
+        ${eye(-30)}${eye(30)}
+        <path d="M -2 -8 Q 6 4 -2 10" fill="none" stroke="#c9a86a" stroke-width="3"/>
+        ${mouth}
+      </g>`;
+  };
+  return `<svg width="380" height="245" viewBox="0 0 380 245">${face(100, false)}${face(280, true)}</svg>`;
+}
+
+function buildGlassPattern() {
+  // 乱数（決定的）で点を打ち、全体を8度回転させたコピーを重ねる
+  let seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const cx = 160, cy = 160, rot = (8 * Math.PI) / 180;
+  let p = `<rect width="320" height="320" fill="#fff"/>`;
+  for (let i = 0; i < 420; i++) {
+    const x = rnd() * 300 + 10, y = rnd() * 300 + 10;
+    const dx = x - cx, dy = y - cy;
+    if (Math.hypot(dx, dy) > 150) continue;
+    const x2 = cx + dx * Math.cos(rot) - dy * Math.sin(rot);
+    const y2 = cy + dx * Math.sin(rot) + dy * Math.cos(rot);
+    p += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2" fill="#141414"/>`;
+    p += `<circle cx="${x2.toFixed(1)}" cy="${y2.toFixed(1)}" r="2" fill="#141414"/>`;
+  }
+  return `<svg width="320" height="320" viewBox="0 0 320 320">${p}</svg>`;
+}
+
+function buildGiovanelli() {
+  let p = `<rect width="360" height="200" fill="#fff"/>`;
+  for (let i = 0; i < 7; i++) {
+    const x = 40 + i * 47, dy = (i % 2 ? -1 : 1) * 16;
+    p += `<circle cx="${x}" cy="${100 + dy}" r="22" fill="none" stroke="#141414" stroke-width="2.5"/>`;
+    p += `<circle cx="${x}" cy="100" r="6" fill="#0c0c0c"/>`;
+  }
+  return `<svg width="360" height="200" viewBox="0 0 360 200">${p}</svg>`;
+}
+
+function buildNumerosity() {
+  let seed = 3;
+  const rnd = () => (seed = (seed * 48271) % 2147483647) / 2147483647;
+  let p = `<rect width="380" height="220" viewBox="0 0 380 220" fill="#fff"/>`;
+  p += `<rect x="0" y="0" width="180" height="220" fill="#f4efe4"/><rect x="200" y="0" width="180" height="220" fill="#f4efe4"/>`;
+  // 左：かたまりがちなランダム配置 60個
+  const pts = [];
+  while (pts.length < 60) {
+    const x = 14 + rnd() * 152, y = 14 + rnd() * 192;
+    if (pts.every(([px, py]) => Math.hypot(px - x, py - y) > 9)) pts.push([x, y]);
+  }
+  pts.forEach(([x, y]) => (p += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="#141414"/>`));
+  // 右：規則的な配置 60個（10列×6行）
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 10; c++)
+    p += `<circle cx="${216 + c * 16.5}" cy="${28 + r * 33}" r="4" fill="#141414"/>`;
+  return `<svg width="380" height="220" viewBox="0 0 380 220">${p}</svg>`;
+}
+
+function buildMissingSquare() {
+  const u = 22, ox = 30, H = 290;
+  // 13×5 の直角三角形を作る4ピース（古典的な配置）
+  const pieces = (oy, swap) => {
+    const Y = (gy) => oy - gy * u, X = (gx) => ox + gx * u;
+    const poly = (pts, fill) =>
+      `<polygon points="${pts.map(([gx, gy]) => `${X(gx)},${Y(gy)}`).join(" ")}" fill="${fill}" stroke="#141414" stroke-width="1.5"/>`;
+    let s = "";
+    if (!swap) {
+      s += poly([[0, 0], [8, 0], [8, 3], [0, 0]], "#1f4fb8");            // 8×3 三角形
+      s += poly([[8, 3], [13, 3], [13, 5], [8, 3]], "#df3b26");          // 5×2 三角形
+      s += poly([[8, 0], [13, 0], [13, 3], [10, 3], [10, 1], [8, 1], [8, 0]], "#f3c10a"); // L字
+      s += poly([[8, 1], [10, 1], [10, 3], [13, 3], [13, 3], [8, 3], [8, 1]], "#2e9e4f"); // L字
+    } else {
+      s += poly([[0, 0], [5, 0], [5, 2], [0, 0]], "#df3b26");            // 5×2 三角形（左下へ）
+      s += poly([[5, 2], [13, 2], [13, 5], [5, 2]], "#1f4fb8");          // 8×3 三角形
+      s += poly([[5, 0], [10, 0], [10, 1], [7, 1], [7, 2], [5, 2], [5, 0]], "#2e9e4f");
+      s += poly([[7, 1], [10, 1], [10, 0], [13, 0], [13, 2], [7, 2], [7, 1]], "#f3c10a");
+      s += `<rect x="${X(5)}" y="${Y(1)}" width="${u}" height="${u}" fill="#fff" stroke="#141414" stroke-width="1.5" stroke-dasharray="4 3"/>`;
+    }
+    return s;
+  };
+  return `<svg width="350" height="${H}" viewBox="0 0 350 ${H}">${pieces(125, false)}${pieces(270, true)}</svg>`;
 }
