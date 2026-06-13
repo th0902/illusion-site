@@ -478,6 +478,27 @@ footer.site {
 .ames-spin { animation: amesTurn 6s linear infinite; transform-style: preserve-3d; }
 @keyframes amesTurn { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
+/* 誘導運動 */
+.induced { position: relative; width: 300px; height: 220px; background: #101626; overflow: hidden; }
+.induced .frame { position: absolute; top: 30px; left: 60px; width: 180px; height: 160px; border: 7px solid #c9d2e6; animation: indMove 2.6s ease-in-out infinite alternate; }
+.induced .dot { position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; margin: -11px; border-radius: 50%; background: #f3c10a; }
+@keyframes indMove { from { transform: translateX(-48px); } to { transform: translateX(48px); } }
+
+/* 運動による変化の見落とし */
+.silence { position: relative; width: 280px; height: 280px; border-radius: 50%; background: #1c1c1c; }
+.silence .sring { position: absolute; inset: 0; animation: spin 3.6s linear infinite; }
+.silence .sring span {
+  position: absolute; top: 50%; left: 50%; width: 22px; height: 22px; margin: -11px;
+  border-radius: 50%; background: #ff4040; animation: hueCycle 2.4s linear infinite;
+}
+@keyframes hueCycle { 0% { background: #ff4040; } 25% { background: #40e060; } 50% { background: #4060ff; } 75% { background: #f0e040; } 100% { background: #ff4040; } }
+.silence .sfix { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; margin: -5px; border-radius: 50%; background: #fff; }
+
+/* 溝の錯視 */
+.furrow { position: relative; width: 300px; height: 240px; overflow: hidden; background: repeating-linear-gradient(58deg, #6f6f6f 0 13px, #9a9a9a 13px 26px); }
+.furrow .spot { position: absolute; left: 138px; width: 26px; height: 26px; border-radius: 50%; background: radial-gradient(#ffffff, rgba(255,255,255,0) 70%); animation: furrowMove 2.6s linear infinite; }
+@keyframes furrowMove { from { top: -30px; } to { top: 240px; } }
+
 @media (max-width: 480px) {
   .ebbinghaus { gap: 40px; }
   .contrast { width: 300px; }
