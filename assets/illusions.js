@@ -800,6 +800,78 @@ window.ILLUSIONS = [
       "同じ4つのピースを並べ替えただけなのに、下の三角形には1マスの穴が空いています。実は、どちらの「斜辺」もまっすぐではなく、ごくわずかに折れ曲がっています。その差がちょうど1マス分の面積になるのですが、目はその折れを検出できません。",
     art: buildMissingSquare,
   },
+  {
+    id: "bullseye",
+    title: "的の錯視",
+    sub: "Bullseye Illusion",
+    explain:
+      "中央の2つの円（的）は、まったく同じ灰色です。暗いリングに囲まれた的は明るく、明るいリングに囲まれた的は暗く見えます。すぐ外側のリングだけでなく、何重ものリング全体が明るさの判断に影響します。",
+    art: buildBullseye,
+  },
+  {
+    id: "checkerboard-contrast",
+    title: "市松コントラスト錯視",
+    sub: "Checkerboard Contrast",
+    explain:
+      "中段に並ぶ小さな灰色の四角は、すべてまったく同じ色です。黒いマスの上の四角は明るく、白いマスの上の四角は暗く見えます。デヴァロアらが示した、市松模様の上での明るさ対比です。",
+    art: buildCheckerboardContrast,
+  },
+  {
+    id: "helmholtz-kohlrausch",
+    title: "ヘルムホルツ・コールラウシュ効果",
+    sub: "Helmholtz–Kohlrausch Effect",
+    explain:
+      "下の段の彩度の高い色は、上の段の灰色とほぼ同じ明るさ（輝度）です。それでも、鮮やかな色のほうが明るく見えます。色の「鮮やかさ」が、明るさの感じ方を押し上げるためです。",
+    art: buildHelmholtzKohlrausch,
+  },
+  {
+    id: "healing-grid",
+    title: "癒しの格子",
+    sub: "Healing Grid",
+    explain:
+      "中央は規則正しい格子、周辺は位置がバラバラの格子です。中央の1点を10秒ほど見つめ続けてください。すると周辺の乱れた格子まで、だんだん規則正しく「整って」見えてきます。脳が規則性を周辺へ押し広げるために起こる、北岡明佳氏の錯視です。",
+    art: buildHealingGrid,
+  },
+  {
+    id: "moon-illusion",
+    title: "月の錯視",
+    sub: "Moon Illusion",
+    explain:
+      "2つの月はまったく同じ大きさ（同じピクセル数）です。地平線近く、木や建物といった比較対象のそばにある月のほうが、空高くにある月より大きく見えます。実際の満月が地平線近くで大きく見えるのと同じ現象です。",
+    art: buildMoonIllusion,
+  },
+  {
+    id: "induced-motion",
+    title: "誘導運動",
+    sub: "Induced Motion",
+    explain:
+      "中央の黄色い点は止まっています。動いているのは外側の四角い枠だけです。それなのに、枠が右へ動くと点は左へ、というように、点が枠と反対向きに動いて見えます。雲が流れると月が動いて見えるのと同じ現象です。",
+    art: buildInducedMotion,
+  },
+  {
+    id: "motion-silencing",
+    title: "運動による変化の見落とし",
+    sub: "Motion Silencing",
+    explain:
+      "リングが止まっているときは、一つひとつの点が激しく色を変えているのがはっきり見えます。リングが回り始めると、色の変化がほとんど止まったように感じられます。動きが、色や明るさの変化への気づきを「消して」しまう現象です。",
+    art: buildMotionSilencing,
+  },
+  {
+    id: "furrow",
+    title: "溝の錯視",
+    sub: "Furrow Illusion",
+    explain:
+      "ぼやけた点は、まっすぐ真下へ動いているだけです。しかし斜めの縞（溝）の上では、縞に沿って斜めに動いているように見えます。輪郭がぼやけた点の動きを、脳が背景の縞の向きに引きつけて解釈するためです。アンスティスが報告しました。",
+    art: buildFurrow,
+  },
+  {
+    id: "duck-rabbit",
+    title: "ウサギとアヒル",
+    sub: "Duck–Rabbit",
+    explain:
+      "左を向いたアヒル（左の突起がくちばし）にも、右を向いたウサギ（同じ突起が耳）にも見える、有名な多義図形です。同じ絵が2通りの動物に見え、一度どちらかに見えると、もう一方へ切り替えるのに少し努力が要ります。",
+    art: buildDuckRabbit,
+  },
 ];
 
 function buildCafeWall() {
@@ -2278,3 +2350,111 @@ function buildMissingSquare() {
   };
   return `<svg width="350" height="${H}" viewBox="0 0 350 ${H}">${pieces(125, false)}${pieces(270, true)}</svg>`;
 }
+
+function buildBullseye() {
+  const target = "#8f8f8f";
+  const panel = (cx, darkFirst) => {
+    let s = "";
+    for (let i = 9; i >= 1; i--) {
+      const dark = (i % 2 === 1) === darkFirst;
+      s += `<circle cx="${cx}" cy="120" r="${10 + i * 11}" fill="${dark ? "#161616" : "#ededed"}"/>`;
+    }
+    return s + `<circle cx="${cx}" cy="120" r="21" fill="${target}"/>`;
+  };
+  return `<svg width="340" height="240" viewBox="0 0 340 240"><rect width="340" height="240" fill="#7d7d7d"/>${panel(90, true)}${panel(250, false)}</svg>`;
+}
+
+function buildCheckerboardContrast() {
+  const t = 36, n = 8, g = "#8a8a8a";
+  let p = `<rect width="${t * n}" height="${t * n}" fill="#fff"/>`;
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++)
+    if ((r + c) % 2 === 0) p += `<rect x="${c * t}" y="${r * t}" width="${t}" height="${t}" fill="#111"/>`;
+  const row = 3;
+  for (let c = 0; c < n; c++) p += `<rect x="${c * t + 8}" y="${row * t + 8}" width="${t - 16}" height="${t - 16}" fill="${g}"/>`;
+  return `<svg width="${t * n}" height="${t * n}" viewBox="0 0 ${t * n} ${t * n}">${p}</svg>`;
+}
+
+function buildHelmholtzKohlrausch() {
+  const bg = "#7c7c7c";
+  let p = `<rect width="340" height="220" fill="${bg}"/>`;
+  // 上＝灰色 / 下＝ほぼ同輝度の鮮やかな色
+  const pairs = [["#8c8c8c", "#c23bd2"], ["#8c8c8c", "#2f73e6"], ["#8c8c8c", "#d83b3b"]];
+  pairs.forEach(([gray, col], i) => {
+    const x = 38 + i * 100;
+    p += `<rect x="${x}" y="34" width="72" height="64" fill="${gray}"/>`;
+    p += `<rect x="${x}" y="122" width="72" height="64" fill="${col}"/>`;
+  });
+  return `<svg width="340" height="220" viewBox="0 0 340 220">${p}</svg>`;
+}
+
+function buildHealingGrid() {
+  const W = 340, H = 300, step = 32, cx = W / 2, cy = H / 2, coreR = 74;
+  let seed = 9;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  let p = `<rect width="${W}" height="${H}" fill="#efe9dc"/>`;
+  for (let y = step / 2; y < H; y += step) {
+    for (let x = step / 2; x < W; x += step) {
+      const core = Math.hypot(x - cx, y - cy) < coreR;
+      const jx = core ? 0 : (rnd() - 0.5) * 22, jy = core ? 0 : (rnd() - 0.5) * 22;
+      const rot = core ? 0 : (rnd() - 0.5) * 50;
+      p += `<g transform="translate(${(x + jx).toFixed(1)} ${(y + jy).toFixed(1)}) rotate(${rot.toFixed(1)})">` +
+        `<rect x="-8" y="-2" width="16" height="4" fill="#3a3a3a"/><rect x="-2" y="-8" width="4" height="16" fill="#3a3a3a"/></g>`;
+    }
+  }
+  p += `<circle cx="${cx}" cy="${cy}" r="3" fill="#df3b26"/>`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildMoonIllusion() {
+  const W = 340, H = 300;
+  let p = `<defs><linearGradient id="moonSky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#0b1030"/><stop offset="0.7" stop-color="#3a3266"/><stop offset="1" stop-color="#9a6a5a"/></linearGradient></defs>`;
+  p += `<rect width="${W}" height="${H}" fill="url(#moonSky)"/>`;
+  // 上空の月（小さく見える）
+  p += `<circle cx="262" cy="64" r="30" fill="#f4efcf"/>`;
+  // 地面
+  p += `<rect y="236" width="${W}" height="64" fill="#16210f"/>`;
+  // 木や建物（比較対象）
+  const tree = (x, h) => `<polygon points="${x - 13},238 ${x},${238 - h} ${x + 13},238" fill="#0c160a"/><rect x="${x - 2.5}" y="234" width="5" height="10" fill="#0c160a"/>`;
+  p += tree(34, 56) + tree(64, 40) + tree(300, 50) + tree(322, 36);
+  p += `<rect x="112" y="200" width="20" height="38" fill="#0c160a"/><rect x="138" y="184" width="16" height="54" fill="#0c160a"/><rect x="206" y="206" width="24" height="32" fill="#0c160a"/>`;
+  // 地平線近くの月（大きく見える） — 上空の月と同じ半径
+  p += `<circle cx="170" cy="228" r="30" fill="#f4efcf"/>`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${p}</svg>`;
+}
+
+function buildInducedMotion() {
+  return `<div class="induced"><div class="frame"></div><div class="dot"></div></div>`;
+}
+
+function buildMotionSilencing() {
+  let dots = "";
+  const n = 44, R = 112;
+  for (let i = 0; i < n; i++) {
+    const a = (i * 360) / n;
+    dots += `<span style="transform:rotate(${a}deg) translate(0,-${R}px);animation-delay:${(i * 0.04).toFixed(2)}s"></span>`;
+  }
+  return `<div class="silence"><div class="sring">${dots}</div><span class="sfix"></span></div>`;
+}
+
+function buildFurrow() {
+  return `<div class="furrow"><div class="spot"></div></div>`;
+}
+
+function buildDuckRabbit() {
+  // 左にくちばし／耳（2本の突起）、右がふくらんだ頭。目はどちらの向きでも成立する位置に
+  const body =
+    "M 96 132 " +
+    "C 64 122 46 124 34 130 C 58 136 72 138 92 144 " +
+    "C 60 150 46 154 40 162 C 70 166 86 162 104 166 " +
+    "C 118 206 178 222 236 200 C 286 181 298 150 282 126 " +
+    "C 266 104 224 92 172 98 C 138 102 110 114 96 132 Z";
+  return `<svg width="340" height="260" viewBox="0 0 340 260">
+    <rect width="340" height="260" fill="#fff"/>
+    <path d="${body}" fill="#141414"/>
+    <circle cx="150" cy="124" r="11" fill="#fff"/>
+    <circle cx="150" cy="124" r="5" fill="#141414"/>
+    <path d="M 250 168 q 16 6 30 2" fill="none" stroke="#fff" stroke-width="3"/>
+  </svg>`;
+}
+
