@@ -1880,7 +1880,7 @@ function buildLiebmann() {
     `<polygon points="170,${cy - 38} 182,${cy - 12} 210,${cy - 10} 189,${cy + 8} 195,${cy + 36} 170,${cy + 21} 145,${cy + 36} 151,${cy + 8} 130,${cy - 10} 158,${cy - 12}" fill="${fill}"/>`;
   return `<svg width="340" height="240" viewBox="0 0 340 240">
     <rect width="340" height="120" fill="rgb(214,60,60)"/>
-    ${star(60, "rgb(70,138,70)")}
+    ${star(60, "rgb(30,118,30)")}
     <rect y="120" width="340" height="120" fill="rgb(214,60,60)"/>
     ${star(180, "rgb(28,56,28)")}
   </svg>`;
@@ -2377,8 +2377,8 @@ function buildCheckerboardContrast() {
 function buildHelmholtzKohlrausch() {
   const bg = "#7c7c7c";
   let p = `<rect width="340" height="220" fill="${bg}"/>`;
-  // 上＝灰色 / 下＝ほぼ同輝度の鮮やかな色
-  const pairs = [["#8c8c8c", "#c23bd2"], ["#8c8c8c", "#2f73e6"], ["#8c8c8c", "#d83b3b"]];
+  // 上＝灰色 / 下＝ほぼ同輝度の鮮やかな色（灰色の輝度を色に合わせて下げてある）
+  const pairs = [["#6c6c6c", "#c23bd2"], ["#6c6c6c", "#3f7be0"], ["#6c6c6c", "#de4a4a"]];
   pairs.forEach(([gray, col], i) => {
     const x = 38 + i * 100;
     p += `<rect x="${x}" y="34" width="72" height="64" fill="${gray}"/>`;
